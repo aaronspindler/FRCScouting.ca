@@ -10,7 +10,7 @@ def home(request):
 #
 #     wordlist = fulltext.split()
 #     worddictionary = {}
-# 
+#
 #     for word in wordlist:
 #         if word in worddictionary:
 #             worddictionary[word] += 1
@@ -23,3 +23,9 @@ def home(request):
 
 def about(request):
     return render(request, 'about.html')
+
+def privacy(request):
+    return render(request, 'privacypolicy.html')
+
+def terms(request):
+    return render(request, 'termsandconditions.html')
