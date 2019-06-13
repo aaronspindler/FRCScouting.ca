@@ -25,4 +25,5 @@ urlpatterns = [
     path('privacy/', views.privacy, name='privacypolicy'),
     path('terms/', views.terms, name='termsandconditions'),
     path('admin/', admin.site.urls),
+    path('blog/', include('Blog.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

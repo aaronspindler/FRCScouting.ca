@@ -1,0 +1,24 @@
+
+<title>FRCScouting | Blog</title>
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="container">
+<h1 class='text-center pt-3'>Welcome to the Blog</h1>
+<br />
+<h2>Latest Posts</h2>
+<hr/>
+
+{% for blog in blogs.all%}
+<a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
+{{blog.pub_date_pretty}}
+<br/>
+<img class="img-fluid" src="{{blog.image.url}}" height = 200 width =200 <img/>
+<br/>
+<p>{{blog.summary}}</p>
+<hr/>
+{% endfor %}
+
+
+<div/>
+{% endblock %}

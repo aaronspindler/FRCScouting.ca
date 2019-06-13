@@ -1,0 +1,18 @@
+
+
+<title>FRCScouting | Blog - {{blog.title}}</title>
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="container">
+  <br/>
+  <h1>{{blog.title}}</h1>
+  {{blog.pub_date}}
+  <br/>
+  <img class="img-fluid" src="{{blog.image.url}}" height = 500 width =500 />
+  <p>{{blog.body}}</p>
+
+  <hr/>
+
+<div/>
+{% endblock %}
