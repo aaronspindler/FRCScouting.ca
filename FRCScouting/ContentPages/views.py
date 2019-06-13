@@ -2,6 +2,9 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 import operator
 
+def home(request):
+    return render(request, 'ContentPages/home.html')
+
 def about(request):
     return render(request, 'ContentPages/about.html')
 
