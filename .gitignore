@@ -8,6 +8,7 @@ __pycache__/
 
 # Custom
 .DS_Store
+FRCScouting/static
 
 # Distribution / packaging
 .Python
