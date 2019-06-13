@@ -43,7 +43,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
-          <a class="nav-item nav-link" href="{% url 'about'%}">About</a>
           <a class="nav-item nav-link" href="{% url 'gamemanuals'%}">Game Manuals</a>
           <a class="nav-item nav-link" href="{% url 'blog'%}">Blog</a>
 
@@ -60,10 +59,12 @@
 
   <footer>
     <div class="container text-center">
-      <p>Visit our project on Github <a href="https://github.com/xNovax/FRCScouting.ca/"><img src= "{% static 'Github_Icon.png'%}" height = 20 width = 20<img/></a></p>
     </div>
     <div class="container text-center text-muted">
-      <p>Copyright © Spindlers {% now "Y" %}</p>
+      <p>FRCScouting is open source <a href="https://github.com/xNovax/FRCScouting.ca/"><img src= "{% static 'Github_Icon.png'%}" height = 20 width = 20<img/></a>
+        <br>
+        <a href ="{% url 'about' %}">About<a/> - <a href ="{% url 'contact' %}">Contact<a/> - <a href ="{% url 'licenses' %}">Licenses<a/> - <a href ="{% url 'privacy' %}">Privacy<a/>
+    </p>
     </div>
   </footer>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

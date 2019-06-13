@@ -12,8 +12,11 @@ def about(request):
 def privacy(request):
     return render(request, 'ContentPages/privacypolicy.html')
 
-def terms(request):
-    return render(request, 'ContentPages/termsandconditions.html')
+def licenses(request):
+    return render(request, 'ContentPages/licenses.html')
+
+def contact(request):
+    return render(request, 'ContentPages/contact.html')
 
 def gamemanuals(request):
     gameManuals = GameManual.objects
