@@ -29,3 +29,6 @@ def privacy(request):
 
 def terms(request):
     return render(request, 'termsandconditions.html')
+
+def gamemanuals(request):
+    return render(request, 'gamemanuals.html')

@@ -1,0 +1,46 @@
+<title>FRCScouting | Game Manuals</title>
+{% extends "base_generic.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <img class="card-img-top" src="{% static 'FRC-2016-game-logo.png'%}"/>
+        <div class="card-body">
+          <p class="card-text"><a href="{% static 'FRC-2016-game-manual.pdf' %}">2016</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <img class="card-img-top" src="{% static 'FRC-2017-game-logo.png'%}"/>
+        <div class="card-body">
+          <p class="card-text"><a href="{% static 'FRC-2017-game-manual.pdf' %}">2017</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <img class="card-img-top" src="{% static 'FRC-2018-game-logo.png'%}"/>
+        <div class="card-body">
+          <p class="card-text"><a href="{% static 'FRC-2018-game-manual.pdf' %}">2018</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <img class="card-img-top" src="{% static 'FRC-2019-game-logo.png'%}"/>
+        <div class="card-body">
+          <p class="card-text"><a href="{% static 'FRC-2019-game-manual.pdf' %}">2019</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+
+{% endblock %}
