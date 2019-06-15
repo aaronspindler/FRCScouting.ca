@@ -24,3 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('Blog.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler403 = 'ContentPages.views.permission_denied'
+handler404 = 'ContentPages.views.page_not_found'
+handler500 = 'ContentPages.views.server_error'

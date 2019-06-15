@@ -6,6 +6,15 @@ from .models import GameManual
 def home(request):
     return render(request, 'ContentPages/home.html')
 
+def permission_denied(request, exception):
+    return render(request, 'ContentPages/403.html')
+
+def page_not_found(request, exception):
+    return render(request, 'ContentPages/404.html')
+
+def server_error(request):
+    return render(request, 'ContentPages/500.html')
+
 def about(request):
     return render(request, 'ContentPages/about.html')
 
