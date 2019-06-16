@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Blog.apps.BlogConfig',
     'TheBlueAlliance.apps.TheblueallianceConfig',
     'ContentPages.apps.ContentpagesConfig',
+    'Scouting.apps.ScoutingConfig',
 ]
 
 MIDDLEWARE = [
