@@ -1,10 +1,12 @@
-<title>FRCScouting | 400</title>
+<title>FRCScouting | 404</title>
 {% extends "base_generic.html" %}
 {% load staticfiles %}
 
 {% block content %}
 <section class="jumbotron text-center">
-  <h1 class="text-left">404 - Whoops</h1>
-      <img src= "{% static "ContentPages/error_images/Astro-big.png"%}" />
+  <h1 class="text-left">404 - Looks like you're lost</h1>
+  <img src= "{% static "ContentPages/error_images/LostTourist-big.png"%}" height = 400 width = 400 />
+  <br>
+  <p>You told your friends you weren’t bringing your phone, to try and experience what travel was like back in the day. You bought a map and a bottle of water and carried your camera for the money shot. But the map was from 2005 and the landscape had changed. So here you are, in the middle of a large field, that the map continues to claim is a local grocer.</p>
 </section>
 {% endblock %}
