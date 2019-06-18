@@ -6,16 +6,15 @@
 <div class="container">
 <br />
 <h2>Latest Posts</h2>
-<hr/>
 
 {% for blog in blogs.all%}
+<hr/>
 <a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
 {{blog.pub_date_pretty}}
 <br/>
 <img class="img-fluid" src="{{blog.image.url}}" height = 200 width =200 <img/>
 <br/>
 <p>{{blog.summary}}</p>
-<hr/>
 {% endfor %}
 
 
