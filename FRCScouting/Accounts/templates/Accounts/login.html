@@ -1,0 +1,29 @@
+<title>FRCScouting | Login</title>
+{% extends "base_generic.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="container">
+{% if error %}
+{{error}}
+<br>
+<br>
+{% endif %}
+  <h1>Login</h1>
+  <form class="" action="{%url 'login'%}" method="post">
+    {% csrf_token %}
+    Username:
+    <br>
+    <input type="text" name="username" value="">
+    <br>
+
+    Password:
+    <br>
+    <input type="password" name="password" value="">
+    <br>
+
+    <br>
+    <input class="btn btn-primary" type="submit" name="submit" value="Login">
+  </form>
+  </div>
+{% endblock %}

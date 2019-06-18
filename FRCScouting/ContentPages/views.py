@@ -30,3 +30,12 @@ def contact(request):
 def gamemanuals(request):
     gameManuals = GameManual.objects
     return render(request, 'ContentPages/gamemanuals.html',{'gamemanuals':gameManuals})
+
+def pitscouting(request):
+    return render(request, 'ContentPages/pitscouting.html')
+
+def matchscouting(request):
+    return render(request, 'ContentPages/matchscouting.html')
+
+def whyads(request):
+    return render(request, 'ContentPages/why-ads.html')

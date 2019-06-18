@@ -8,4 +8,7 @@ urlpatterns = [
     path('privacy/', views.privacy, name='privacy'),
     path('licenses/', views.licenses, name='licenses'),
     path('contact/', views.contact, name='contact'),
+    path('pitscouting/', views.pitscouting, name='pitscouting'),
+    path('matchscouting/', views.matchscouting, name='matchscouting'),
+    path('whyads/', views.whyads, name='why-ads'),
 ]
