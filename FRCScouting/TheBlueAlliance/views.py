@@ -3,4 +3,6 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url="/account/login")
 def teaminformation(request):
+    #if request.method == 'POST':
+    #else:
     return render(request, 'TheBlueAlliance/teaminformation.html')
