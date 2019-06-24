@@ -24,3 +24,9 @@ class Team(models.Model):
 
     def __str__(self):
         return self.title;
+
+    def ValidateTeamKey(self,team_key):
+        def validate_key_name(self, team_key):
+        key_name_regex = re.compile(r'^frc[1-9]\d*$')
+        match = re.match(key_name_regex, team_key)
+        return True if match else False
