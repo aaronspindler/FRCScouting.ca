@@ -10,29 +10,24 @@
   <br>
   {% endif %}
   <div class="row">
-    <div class="col-4">
+    <div class="col-md-6 offset-md-3">
       <h2>Login</h2>
+      <p>If you have not created an account yet, then please
+        <a href="{%url 'signup'%}">sign up</a> first.</p>
       <form class="" action="{%url 'login'%}" method="post">
         {% csrf_token %}
         Username:
         <br>
-        <input type="text" name="username" value="">
+        <input class="textinput textInput form-control"type="text" name="username" value="">
         <br>
 
         Password:
         <br>
-        <input type="password" name="password" value="">
+        <input class="textinput textInput form-control" type="password" name="password" value="">
         <br>
-
-        <br>
-        <input class="btn btn-primary" type="submit" name="submit" value="Login">
+        <button class="primaryAction btn btn-primary" type="submit">Login</button>
       </form>
     </div>
-    <div class="col-4">
-      <h2>Sign up</h2>
-      <p>Do you need to make an account?</p>
-      <p>Click <a href="{% url 'signup'%}">here</a></p>
-      </div>
     </div>
   </div>
   {% endblock %}
