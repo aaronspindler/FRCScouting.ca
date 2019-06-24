@@ -11,7 +11,10 @@
 {% endif %}
 <div class="row">
   <div class="col-md-6 offset-md-3">
+  <br>
   <h2>Sign up!</h2>
+  <p>Already have an account? Then
+    <a href="{%url 'login'%}">login</a></p>
   <form class="" action="{%url 'signup'%}" method="post">
     {% csrf_token %}
     Username:
