@@ -10,5 +10,24 @@ Team Information
 {% endblock %}
 
 {% block content %}
+<div class="container">
+  {% if error %}
+  {{error}}
+  <br>
+  <br>
+  {% endif %}
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form class="" action="{%url 'tba_teaminfo'%}" method="post">
+        {% csrf_token %}
+        Enter an FRC Team number:
+        <br>
+        <input class="textinput textInput form-control" maxlength="7" type="text" name="teamnumberinput" value="">
+        <br>
+        <button class="primaryAction btn btn-primary" type="submit">Look up</button>
 
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}

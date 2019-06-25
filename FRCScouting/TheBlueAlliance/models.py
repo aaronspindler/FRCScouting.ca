@@ -13,19 +13,4 @@ class Team(models.Model):
     website = models.TextField()
     rookieyear = models.IntegerField()
     motto = models.TextField()
-
     logo = models.ImageField(upload_to='images/')
-
-    def summary(self):
-        return self.body[:280]
-
-    def pub_date_pretty(self):
-        return self.pub_date.strftime('%b %e, %Y')
-
-    def __str__(self):
-        return self.title;
-
-    def ValidateTeamKey(self,team_key):
-        key_name_regex = re.compile(r'^frc[1-9]\d*$')
-        match = re.match(key_name_regex, team_key)
-        return True if match else False
