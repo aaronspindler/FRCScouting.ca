@@ -6,16 +6,37 @@ Team Information | {{team.number}}
 {% endblock %}
 
 {% block pageheader %}
-Team Information | FRC{{team.number}}
+Team Information | FRC {{team.number}}
 {% endblock %}
 
 {% block content %}
 <div class="container">
   <div class="row">
     <div class="col-md-8">
-      
+      {% if team.number %}
+      <h5>Team Number: {{team.number}}</h5>
+      {% endif %}
+
+      <h5>Team Name: {{team.nickname}}</h5> <span class="text-muted"> {{team.name}}</span>
+
+      {% if team.motto %}
+      <h5>Motto: {{team.motto}}</h5>
+      {% endif %}
+
+      {% if team.address %}
+      <h5>Address: {{team.address}}</h5>
+      {% endif %}
+
+      {% if team.website %}
+      <h5>Website: <a href="{{team.website}}">{{team.website}}</a></h5>
+      {% endif %}
+
+      <h5>Rookie Year: {{team.rookieyear}}</h5>
+
     </div>
   </div>
+  <br>
+  <br>
   <div class="row">
     <div class="col-md-8">
       <h4>Lookup Another Team</h4>
