@@ -1,6 +1,8 @@
+from FRCScouting import settings
 
 def get_teaminfo(teamkey):
     #TODO : Send Request to TBA.com
+
 
     #TODO : Parse Request
 
