@@ -15,6 +15,6 @@ def validate_teamkey(teamkey):
     except ValueError:
         return False
     length = len(str(teamkey))
-    if length > 4 and length < 3:
+    if length > 4 or length < 3:
         return False
     return True
