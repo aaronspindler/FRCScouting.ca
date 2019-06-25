@@ -1,4 +1,4 @@
-from FRCScouting import settings
+from django.conf import settings
 from .models import Team
 import requests
 

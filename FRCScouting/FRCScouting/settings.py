@@ -136,7 +136,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
-THE_BLUE_ALLIANCE_KEY = ''
+THE_BLUE_ALLIANCE_KEY = 'p8MD1dJfS2xOHD6cX7MIIW1mcFw1GWHuBKlUq9foxjt1Fp4f17B9PoYVreTBLC7a'
 
 try:
     from .local_settings import *
