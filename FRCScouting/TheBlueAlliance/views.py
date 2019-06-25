@@ -11,7 +11,7 @@ def teaminfo(request):
             team = utils.get_teaminfo(teamkey)
             return render(request, 'TheBlueAlliance/teaminformationdetails.html/', {'team': team})
         else:
-            error = 'Error: The teamkey was entered in the wrong format, please use the raw number for team: Example FRC3710 = 3710'
+            error = 'Error: The teamkey was entered in the wrong format, or the team does not exist!'
             return render(request, 'TheBlueAlliance/teaminformation.html/', {'error': error})
     else:
         return render(request, 'TheBlueAlliance/teaminformation.html')
@@ -22,5 +22,5 @@ def teaminfodetails(request, teamkey):
         team = utils.get_teaminfo(teamkey)
         return render(request, 'TheBlueAlliance/teaminformationdetails.html/', {'team': team})
     else:
-        error = 'Error: The teamkey was entered in the wrong format, please use the raw number for team: Example FRC3710 = 3710'
+        error = 'Error: The teamkey was entered in the wrong format, or the team does not exist!'
         return render(request, 'TheBlueAlliance/teaminformation.html/', {'error': error})
