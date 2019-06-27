@@ -17,7 +17,12 @@ Team Information | FRC {{team.number}}
       <h5>Team Number: {{team.number}}</h5>
       {% endif %}
 
+      {% if team.name %}
       <h5>Team Name: {{team.nickname}}</h5> <span class="text-muted"> {{team.name}}</span>
+      {% else %}
+      <h5>Team does not exist</h5>
+      {% endif %}
+
 
       {% if team.motto %}
       <h5>Motto: {{team.motto}}</h5>
@@ -31,7 +36,9 @@ Team Information | FRC {{team.number}}
       <h5>Website: <a href="{{team.website}}">{{team.website}}</a></h5>
       {% endif %}
 
+      {% if team.rookieyear %}
       <h5>Rookie Year: {{team.rookieyear}}</h5>
+      {% endif %}
 
     </div>
   </div>

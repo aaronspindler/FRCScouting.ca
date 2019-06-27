@@ -4,6 +4,8 @@ from . import utils
 class UtilsTestCase(TestCase):
     def test_validate_teamkey(self):
         self.assertEqual(utils.validate_teamkey(123), True, "Should be True")
+        self.assertEqual(utils.validate_teamkey(1), True, "Should be True")
+        self.assertEqual(utils.validate_teamkey(12), True, "Should be True")
         self.assertEqual(utils.validate_teamkey(1234), True, "Should be True")
         self.assertEqual(utils.validate_teamkey(12345), False, "Should be False")
         self.assertEqual(utils.validate_teamkey(51234), False, "Should be False")
