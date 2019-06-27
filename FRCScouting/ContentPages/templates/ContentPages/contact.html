@@ -6,4 +6,63 @@
 <section class="jumbotron text-center">
   <h1 class="text-left">Contact</h1>
 </section>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form class="" action="{%url 'contact'%}" method="post">
+        {% csrf_token %}
+        <div class="row">
+
+          <!--Grid column-->
+          <div class="col-md-6">
+            <div class="md-form mb-0">
+              <input type="text" id="name" name="name" class="form-control">
+              <label for="name" class="">Name</label>
+            </div>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-md-6">
+            <div class="md-form mb-0">
+              <input type="text" id="email" name="email" class="form-control">
+              <label for="email" class="">Email</label>
+            </div>
+          </div>
+          <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+        <!--Grid row-->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="md-form mb-0">
+              <input type="text" id="subject" name="subject" class="form-control">
+              <label for="subject" class="">Bug/Issue/General Inquiry</label>
+            </div>
+          </div>
+        </div>
+        <!--Grid row-->
+
+        <!--Grid row-->
+        <div class="row">
+
+          <!--Grid column-->
+          <div class="col-md-12">
+
+            <div class="md-form">
+              <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
+              <label for="message">Message</label>
+            </div>
+
+          </div>
+        </div>
+        <!--Grid row-->
+
+        <button class="primaryAction btn btn-primary" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}
