@@ -24,9 +24,6 @@ def privacy(request):
 def licenses(request):
     return render(request, 'ContentPages/licenses.html')
 
-def contact(request):
-    return render(request, 'ContentPages/contact.html')
-
 def gamemanuals(request):
     gameManuals = GameManual.objects
     return render(request, 'ContentPages/gamemanuals.html',{'gamemanuals':gameManuals})

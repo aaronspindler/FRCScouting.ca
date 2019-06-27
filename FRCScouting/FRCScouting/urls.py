@@ -26,6 +26,7 @@ urlpatterns = [
     path('account/', include('Accounts.urls')),
     path('scouting/', include('Scouting.urls')),
     path('tba/', include('TheBlueAlliance.urls')),
+    path('contact/', include('Contact.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler403 = 'ContentPages.views.permission_denied'

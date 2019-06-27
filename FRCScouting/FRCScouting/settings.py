@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'ContentPages.apps.ContentpagesConfig',
     'Scouting.apps.ScoutingConfig',
     'Accounts.apps.AccountsConfig',
+    'Contact.apps.ContactConfig',
 ]
 
 MIDDLEWARE = [
