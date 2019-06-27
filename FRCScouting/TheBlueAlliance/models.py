@@ -13,3 +13,6 @@ class Team(models.Model):
     website = models.TextField(null=True)
     rookieyear = models.IntegerField(null=True)
     motto = models.TextField(null=True)
+
+    def location(self):
+        return str("{}, {}, {}".format(city, state_prov, country))
