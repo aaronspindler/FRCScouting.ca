@@ -14,6 +14,13 @@ class AccountPagesLoadTest(TestCase):
         self.assertEqual(response.status_code,200)
         self.assertTemplateUsed(response, 'Accounts/signup.html')
 
+class ContactPageLoadTest(TestCase):
+    def test_contact(self):
+        url = reverse('contactus')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code,200)
+        self.assertTemplateUsed(response, 'Contact/contact.html')
+
 class BlogPagesLoadTest(TestCase):
     def test_blog(self):
         url = reverse('blog')
@@ -45,12 +52,6 @@ class ContentPagesLoadTest(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code,200)
         self.assertTemplateUsed(response, 'ContentPages/about.html')
-
-    def test_contact(self):
-        url = reverse('contact')
-        response = self.client.get(url)
-        self.assertEqual(response.status_code,200)
-        self.assertTemplateUsed(response, 'ContentPages/contact.html')
 
     def test_gamemanuals(self):
         url = reverse('gamemanuals')
