@@ -18,7 +18,6 @@ class Team(models.Model):
     def location(self):
         return str("{}, {}, {}".format(city, state_prov, country))
 
-
 class Event(models.Model):
     address = models.TextField(null=True)
     city = models.TextField(null=True)
