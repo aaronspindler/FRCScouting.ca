@@ -29,14 +29,14 @@ def get_team_info(teamkey):
 
 #TODO :
 def get_event_info(eventkey):
-    url = 'https://www.thebluealliance.com/api/v3/events/{}'.format(year)
+    url = 'https://www.thebluealliance.com/api/v3/event/{}'.format(year)
     headers = {'X-TBA-Auth-Key': settings.THE_BLUE_ALLIANCE_KEY}
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
         result = response.json()
         eventinfo = Event()
     return None
-    
+
 #TODO :
 def get_events_for_year(year):
     return None
