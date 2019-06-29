@@ -31,5 +31,41 @@ class UtilsTestCase(TestCase):
         team2 = getters.get_team_info(2)
         self.assertEqual(team2, None, "Should be None")
 
-        def test_get_event_info(self):
-            self.assertEqual(True, True)
+    def test_get_event_info(self):
+        #Should be successful
+        event2019abca = getters.get_event_info('2019abca')
+        self.assertEqual(event2019abca.address, "7555 Falconridge Blvd NE #10, Calgary, AB T3J 0C9, Canada")
+        self.assertEqual(event2019abca.city, "Calgary")
+        self.assertEqual(event2019abca.country, "Canada")
+        self.assertEqual(event2019abca.district, None)
+        self.assertEqual(event2019abca.division_keys, [])
+        self.assertEqual(event2019abca.end_date, "2019-04-06")
+        self.assertEqual(event2019abca.event_code, "abca")
+        self.assertEqual(event2019abca.event_type, 0)
+        self.assertEqual(event2019abca.event_type_string, "Regional")
+        self.assertEqual(event2019abca.first_event_code, "ABCA")
+        self.assertEqual(event2019abca.first_event_id, None)
+        self.assertEqual(event2019abca.gmaps_place_id, "ChIJWxy6PJljcVMRpVrD88vyEdY")
+        self.assertEqual(event2019abca.gmaps_url, "https://maps.google.com/?cid=15425377156502608549")
+        self.assertEqual(event2019abca.key, "2019abca")
+        self.assertEqual(event2019abca.lat, 51.1202633)
+        self.assertEqual(event2019abca.lng, -113.9486288)
+        self.assertEqual(event2019abca.location_name, "The Genesis Centre")
+        self.assertEqual(event2019abca.name, "Canadian Rockies Regional")
+        self.assertEqual(event2019abca.parent_event_key, None)
+        self.assertEqual(event2019abca.playoff_type, None)
+        self.assertEqual(event2019abca.playoff_type_string, None)
+        self.assertEqual(event2019abca.postal_code, "T3J 0C9")
+        self.assertEqual(event2019abca.short_name, "Canadian Rockies")
+        self.assertEqual(event2019abca.start_date, "2019-04-03")
+        self.assertEqual(event2019abca.state_prov, "AB")
+        self.assertEqual(event2019abca.timezone, "America/Edmonton")
+        #TODO webcasts
+        self.assertEqual(event2019abca.website, "http://frcwest.com/")
+        self.assertEqual(event2019abca.week, 5)
+        self.assertEqual(event2019abca.year, 2019)
+
+
+        #Should 404
+        event2000abcd = getters.get_event_info('2000abcd')
+        self.assertEqual(event2000abcd, None)

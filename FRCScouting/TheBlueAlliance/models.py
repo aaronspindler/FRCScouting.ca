@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.postgres.fields import JSONField
 
 class Team(models.Model):
     number = models.IntegerField(primary_key=True)
@@ -45,7 +44,7 @@ class Event(models.Model):
     start_date = models.TextField(null=True)
     state_prov = models.TextField(null=True)
     timezone = models.TextField(null=True)
-    webcasts = JSONField()
+    webcasts = models.TextField(null=True)
     website = models.URLField(null=True)
     week = models.IntegerField(null=True)
     year = models.IntegerField(null=True)
