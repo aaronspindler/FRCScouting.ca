@@ -1,5 +1,5 @@
 from django.conf import settings
-from .models import Team
+from .models import Team, Event
 import requests
 
 def get_teaminfo(teamkey):
@@ -38,3 +38,16 @@ def validate_teamkey(teamkey):
     if length > 4:
         return False
     return True
+
+#TODO :
+def get_event_info(eventkey):
+    return None
+#TODO :
+def get_events_for_year(year):
+        url = 'https://www.thebluealliance.com/api/v3/events/{}'.format(year)
+        headers = {'X-TBA-Auth-Key': settings.THE_BLUE_ALLIANCE_KEY}
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            result = response.json()
+            eventinfo = Event()
+        return None
