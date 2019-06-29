@@ -68,7 +68,7 @@ def get_event_info(eventkey):
         eventinfo.week = result['week']
         eventinfo.year = result['year']
         eventinfo.save()
-        
+
         return eventinfo
     elif response.status_code == 404:
         return None
