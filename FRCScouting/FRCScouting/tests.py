@@ -94,3 +94,9 @@ class ContentPagesLoadTest(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code,200)
         self.assertTemplateUsed(response, 'ContentPages/why-ads.html')
+
+    def test_terms(self):
+        url = reverse('terms')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code,200)
+        self.assertTemplateUsed(response, 'ContentPages/terms.html')

@@ -36,3 +36,6 @@ def matchscouting(request):
 
 def whyads(request):
     return render(request, 'ContentPages/why-ads.html')
+
+def terms(request):
+    return render(request, 'ContentPages/terms.html')

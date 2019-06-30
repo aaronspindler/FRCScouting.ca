@@ -10,4 +10,5 @@ urlpatterns = [
     path('pitscouting/', views.pitscouting, name='pitscouting'),
     path('matchscouting/', views.matchscouting, name='matchscouting'),
     path('whyads/', views.whyads, name='why-ads'),
+    path('terms/', views.terms, name='terms'),
 ]
