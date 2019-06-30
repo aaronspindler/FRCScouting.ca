@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 from . import validators, getters
 
@@ -28,3 +29,11 @@ def teaminfodetails(request, teamkey):
 @login_required(login_url="/account/login")
 def eventinfo(request):
     return render(request, 'TheBlueAlliance/eventinfo.html')
+
+@staff_member_required
+def loaddata(request):
+    getters.get_events_for_year(2016)
+    getters.get_events_for_year(2017)
+    getters.get_events_for_year(2018)
+    getters.get_events_for_year(2019)
+    return render(request, 'TheBlueAlliance/admin.html', {'events' : 'success', 'teams': 'success'})

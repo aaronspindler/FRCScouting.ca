@@ -1,0 +1,32 @@
+{% extends "base_dashboard.html" %}
+{% load staticfiles %}
+
+{% block title %}
+Admin
+{% endblock %}
+
+{% block pageheader %}
+Admin
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  {% if error %}
+  {{error}}
+  <br>
+  <br>
+  {% endif %}
+  <div class="row">
+    <div class="col-md-6">
+      {% if events %}
+      Events: {{events}}
+      <br>
+      {% endif %}
+      {% if teams %}
+      Teams: {{teams}}
+      <br>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

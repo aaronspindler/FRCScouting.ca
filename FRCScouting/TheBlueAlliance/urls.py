@@ -5,4 +5,5 @@ urlpatterns = [
     path('teaminfo/', views.teaminfo, name='tba_teaminfo'),
     path('teaminfo/<str:teamkey>/',views.teaminfodetails, name='tba_teaminfodetail'),
     path('eventinfo/', views.eventinfo, name='tba_eventinfo'),
+    path('admin/loaddata', views.loaddata, name='tba_admin_loaddata'),
 ]
