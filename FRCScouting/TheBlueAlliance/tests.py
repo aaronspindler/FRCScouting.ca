@@ -80,8 +80,13 @@ class UtilsTestCase(TestCase):
         self.assertEqual(event2000abcd, None)
 
     def test_get_events_for_year(self):
+        #Check if right amount of objects are returned
         year2019 = getters.get_events_for_year(2019)
         self.assertEqual(len(year2019),242)
+
+        #Check if objects went to DB
+        allEvents = Event.objects.count()
+        self.assertEqual(allEvents,242)
 
         #Should be successful
         event0 = year2019["2019abca"]
@@ -112,6 +117,7 @@ class UtilsTestCase(TestCase):
         self.assertEqual(event0.state_prov, "AB")
         self.assertEqual(event0.timezone, "America/Edmonton")
 
+        #Checking functions of object
         self.assertEqual(event0.location(), "Calgary, AB, Canada")
 
         #Should 404
