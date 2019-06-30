@@ -31,9 +31,14 @@ def eventinfo(request):
     return render(request, 'TheBlueAlliance/eventinfo.html')
 
 @staff_member_required
-def loaddata(request):
+def events_loaddata(request):
     getters.get_events_for_year(2016)
     getters.get_events_for_year(2017)
     getters.get_events_for_year(2018)
     getters.get_events_for_year(2019)
-    return render(request, 'TheBlueAlliance/admin.html', {'events' : 'success', 'teams': 'success'})
+    return render(request, 'TheBlueAlliance/admin.html', {'events' : 'Loaded Successfully'})
+
+@staff_member_required
+def teams_loaddata(request):
+    #TODO : Load Team Data
+    return render(request, 'TheBlueAlliance/admin.html', {'teams': 'Loaded Successfully'})
