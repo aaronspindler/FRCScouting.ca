@@ -116,7 +116,7 @@ def get_events_for_year(year):
             eventinfo.week = event['week']
             eventinfo.year = event['year']
 
-            events[eventinfo.name] = eventinfo
+            events[eventinfo.key] = eventinfo
 
             eventinfo.save()
 
