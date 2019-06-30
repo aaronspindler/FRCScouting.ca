@@ -103,3 +103,6 @@ class UtilsTestCase(TestCase):
         self.assertEqual(event0.start_date, "2019-04-03")
         self.assertEqual(event0.state_prov, "AB")
         self.assertEqual(event0.timezone, "America/Edmonton")
+
+        year1950 = getters.get_events_for_year(1950)
+        self.assertEqual(year1950,None)
