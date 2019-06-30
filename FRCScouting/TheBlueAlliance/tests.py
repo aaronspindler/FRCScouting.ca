@@ -1,4 +1,5 @@
 from django.test import TestCase
+from TheBlueAlliance.models import Team,Event
 from . import validators, getters
 
 class UtilsTestCase(TestCase):
@@ -26,6 +27,12 @@ class UtilsTestCase(TestCase):
         self.assertEqual(team3710.nickname, 'FSS Cyber Falcons', "Should be FSS Cyber Falcons")
         self.assertEqual(team3710.website, 'http://www.cyberfalcons.com', "Should be http://www.cyberfalcons.com")
         self.assertEqual(team3710.rookieyear, 2011, "Should be 2011")
+
+        team3710db = Team.objects.get(number=3710)
+        self.assertEqual(team3710db.number, 3710, "Should be 3710")
+        self.assertEqual(team3710db.nickname, 'FSS Cyber Falcons', "Should be FSS Cyber Falcons")
+        self.assertEqual(team3710db.website, 'http://www.cyberfalcons.com', "Should be http://www.cyberfalcons.com")
+        self.assertEqual(team3710db.rookieyear, 2011, "Should be 2011")
 
         #Should 404
         team2 = getters.get_team_info(2)
@@ -76,6 +83,7 @@ class UtilsTestCase(TestCase):
         year2019 = getters.get_events_for_year(2019)
         self.assertEqual(len(year2019),242)
 
+        #Should be successful
         event0 = year2019["2019abca"]
         self.assertEqual(event0.address, "7555 Falconridge Blvd NE #10, Calgary, AB T3J 0C9, Canada")
         self.assertEqual(event0.city, "Calgary")
@@ -104,5 +112,8 @@ class UtilsTestCase(TestCase):
         self.assertEqual(event0.state_prov, "AB")
         self.assertEqual(event0.timezone, "America/Edmonton")
 
+        self.assertEqual(event0.location(), "Calgary, AB, Canada")
+
+        #Should 404
         year1950 = getters.get_events_for_year(1950)
         self.assertEqual(year1950,None)

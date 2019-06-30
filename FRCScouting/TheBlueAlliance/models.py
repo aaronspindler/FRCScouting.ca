@@ -15,7 +15,7 @@ class Team(models.Model):
     motto = models.TextField(null=True)
 
     def location(self):
-        return str("{}, {}, {}".format(city, state_prov, country))
+        return str("{}, {}, {}".format(self.city, self.state_prov, self.country))
 
 class Event(models.Model):
     address = models.TextField(null=True)
@@ -48,3 +48,6 @@ class Event(models.Model):
     website = models.URLField(null=True)
     week = models.IntegerField(null=True)
     year = models.IntegerField(null=True)
+
+    def location(self):
+        return str("{}, {}, {}".format(self.city, self.state_prov, self.country))
