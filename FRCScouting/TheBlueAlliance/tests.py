@@ -69,3 +69,7 @@ class UtilsTestCase(TestCase):
         #Should 404
         event2000abcd = getters.get_event_info('2000abcd')
         self.assertEqual(event2000abcd, None)
+
+    def test_get_events_for_year(self):
+        year2019 = getters.get_events_for_year(2019)
+        self.assertEqual(len(year2019),242)
