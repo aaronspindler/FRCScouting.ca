@@ -61,9 +61,7 @@ def get_event_info(eventkey):
         eventinfo.start_date = result['start_date']
         eventinfo.state_prov = result['state_prov']
         eventinfo.timezone = result['timezone']
-
-        #TODO: Webcasts
-
+        eventinfo.webcasts = result['webcasts']
         eventinfo.website = result['website']
         eventinfo.week = result['week']
         eventinfo.year = result['year']

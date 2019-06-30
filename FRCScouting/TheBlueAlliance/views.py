@@ -24,3 +24,7 @@ def teaminfodetails(request, teamkey):
     else:
         error = 'Error: The teamkey was entered in the wrong format!'
         return render(request, 'TheBlueAlliance/teaminformation.html/', {'error': error})
+
+@login_required(login_url="/account/login")
+def eventinfo(request):
+    return render(request, 'TheBlueAlliance/eventinfo.html')
