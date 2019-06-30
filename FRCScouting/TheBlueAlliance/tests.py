@@ -60,7 +60,9 @@ class UtilsTestCase(TestCase):
         self.assertEqual(event2019abca.start_date, "2019-04-03")
         self.assertEqual(event2019abca.state_prov, "AB")
         self.assertEqual(event2019abca.timezone, "America/Edmonton")
+
         #TODO webcasts
+
         self.assertEqual(event2019abca.website, "http://frcwest.com/")
         self.assertEqual(event2019abca.week, 5)
         self.assertEqual(event2019abca.year, 2019)
@@ -69,3 +71,35 @@ class UtilsTestCase(TestCase):
         #Should 404
         event2000abcd = getters.get_event_info('2000abcd')
         self.assertEqual(event2000abcd, None)
+
+    def test_get_events_for_year(self):
+        year2019 = getters.get_events_for_year(2019)
+        self.assertEqual(len(year2019),242)
+
+        event0 = year2019["2019abca"]
+        self.assertEqual(event0.address, "7555 Falconridge Blvd NE #10, Calgary, AB T3J 0C9, Canada")
+        self.assertEqual(event0.city, "Calgary")
+        self.assertEqual(event0.country, "Canada")
+        self.assertEqual(event0.district, None)
+        self.assertEqual(event0.division_keys, [])
+        self.assertEqual(event0.end_date, "2019-04-06")
+        self.assertEqual(event0.event_code, "abca")
+        self.assertEqual(event0.event_type, 0)
+        self.assertEqual(event0.event_type_string, "Regional")
+        self.assertEqual(event0.first_event_code, "ABCA")
+        self.assertEqual(event0.first_event_id, None)
+        self.assertEqual(event0.gmaps_place_id, "ChIJWxy6PJljcVMRpVrD88vyEdY")
+        self.assertEqual(event0.gmaps_url, "https://maps.google.com/?cid=15425377156502608549")
+        self.assertEqual(event0.key, "2019abca")
+        self.assertEqual(event0.lat, 51.1202633)
+        self.assertEqual(event0.lng, -113.9486288)
+        self.assertEqual(event0.location_name, "The Genesis Centre")
+        self.assertEqual(event0.name, "Canadian Rockies Regional")
+        self.assertEqual(event0.parent_event_key, None)
+        self.assertEqual(event0.playoff_type, None)
+        self.assertEqual(event0.playoff_type_string, None)
+        self.assertEqual(event0.postal_code, "T3J 0C9")
+        self.assertEqual(event0.short_name, "Canadian Rockies")
+        self.assertEqual(event0.start_date, "2019-04-03")
+        self.assertEqual(event0.state_prov, "AB")
+        self.assertEqual(event0.timezone, "America/Edmonton")

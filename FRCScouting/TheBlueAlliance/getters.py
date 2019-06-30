@@ -75,4 +75,52 @@ def get_event_info(eventkey):
 
 #TODO
 def get_events_for_year(year):
-    return None
+    url = 'https://www.thebluealliance.com/api/v3/events/{}'.format(year)
+    headers = {'X-TBA-Auth-Key': settings.THE_BLUE_ALLIANCE_KEY}
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        result = response.json()
+        events = {}
+        for event in result:
+            eventinfo = Event()
+            eventinfo.address = event['address']
+            eventinfo.city = event['city']
+            eventinfo.country = event['country']
+            eventinfo.district = event['district']
+            eventinfo.division_keys = event['division_keys']
+            eventinfo.end_date = event['end_date']
+            eventinfo.event_code = event['event_code']
+            eventinfo.event_type = event['event_type']
+            eventinfo.event_type_string = event['event_type_string']
+            eventinfo.first_event_code = event['first_event_code']
+            eventinfo.first_event_id = event['first_event_id']
+            eventinfo.gmaps_place_id = event['gmaps_place_id']
+            eventinfo.gmaps_url = event['gmaps_url']
+            eventinfo.key = event['key']
+            eventinfo.lat = event['lat']
+            eventinfo.lng = event['lng']
+            eventinfo.location_name = event['location_name']
+            eventinfo.name = event['name']
+            eventinfo.parent_event_key = event['parent_event_key']
+            eventinfo.playoff_type = event['playoff_type']
+            eventinfo.playoff_type_string = event['playoff_type_string']
+            eventinfo.postal_code = event['postal_code']
+            eventinfo.short_name = event['short_name']
+            eventinfo.start_date = event['start_date']
+            eventinfo.state_prov = event['state_prov']
+            eventinfo.timezone = event['timezone']
+
+            #TODO: Webcasts
+
+            eventinfo.website = event['website']
+            eventinfo.week = event['week']
+            eventinfo.year = event['year']
+
+            events[eventinfo.key] = eventinfo
+
+            eventinfo.save()
+
+        return events
+
+    elif response.status_code == 404:
+        return None

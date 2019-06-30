@@ -1,0 +1,25 @@
+{% extends "base_dashboard.html" %}
+{% load staticfiles %}
+
+{% block title %}
+Event Information
+{% endblock %}
+
+{% block pageheader %}
+Event Information
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  {% if error %}
+  {{error}}
+  <br>
+  <br>
+  {% endif %}
+  <div class="row">
+    <div class="col-md-6">
+
+    </div>
+  </div>
+</div>
+{% endblock %}
