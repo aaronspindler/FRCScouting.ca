@@ -88,6 +88,23 @@ class GettersTestCase(TestCase):
         events2019keys = getters.get_events_by_year_keys(2019)
         self.assertEqual(len(events2019keys), 242, 'Should be 242')
 
+        events2018keys = getters.get_events_by_year_keys(2018)
+        self.assertEqual(len(events2018keys), 278, 'Should be 278')
+
+        events2017keys = getters.get_events_by_year_keys(2017)
+        self.assertEqual(len(events2017keys), 255, 'Should be 255')
+
+        events2016keys = getters.get_events_by_year_keys(2016)
+        self.assertEqual(len(events2016keys), 203, 'Should be 203')
+
         #Should 404
         events1950keys = getters.get_events_by_year_keys(1950)
         self.assertEqual(events1950keys, None, 'Should be None')
+
+    def test_get_all_event_keys(self):
+        allkeys = getters.get_all_event_keys()
+        self.assertEqual(len(allkeys), 4)
+        self.assertEqual(len(allkeys[2016]), 203)
+        self.assertEqual(len(allkeys[2017]), 255)
+        self.assertEqual(len(allkeys[2018]), 278)
+        self.assertEqual(len(allkeys[2019]), 242)

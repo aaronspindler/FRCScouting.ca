@@ -28,11 +28,17 @@ def teaminfodetails(request, teamkey):
 
 @login_required(login_url="/account/login")
 def eventinfo(request):
-    return render(request, 'TheBlueAlliance/eventinfo.html')
+    all_event_keys = getters.get_all_event_keys()
+    events2016 = all_event_keys[2016]
+    events2017 = all_event_keys[2017]
+    events2018 = all_event_keys[2018]
+    events2019 = all_event_keys[2019]
+
+    return render(request, 'TheBlueAlliance/eventinfo.html', {'events2016' : events2016, 'events2017' : events2017, 'events2018' : events2018, 'events2019' : events2019 })
 
 @staff_member_required
 def events_loaddata(request):
-    #TODO
+    #TODO : Load Event Data
     return render(request, 'TheBlueAlliance/admin.html', {'events' : 'Loaded Successfully'})
 
 @staff_member_required

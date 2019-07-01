@@ -40,6 +40,11 @@ class TheBlueAlliancePagesLoadTest(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code,302)
 
+    def test_eventinfo(self):
+        url = reverse('tba_eventinfo')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code,302)
+
 class ContentPagesLoadTest(TestCase):
     def test_home(self):
         url = reverse('home')
