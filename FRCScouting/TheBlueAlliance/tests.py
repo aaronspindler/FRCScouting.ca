@@ -82,3 +82,12 @@ class GettersTestCase(TestCase):
 
         events1950 = getters.get_events_by_year(1950)
         self.assertEqual(events1950, None, 'Should be None')
+
+    def test_get_events_by_year_keys(self):
+        #Should succeed
+        events2019keys = getters.get_events_by_year_keys(2019)
+        self.assertEqual(len(events2019keys), 242, 'Should be 242')
+
+        #Should 404
+        events1950keys = getters.get_events_by_year_keys(1950)
+        self.assertEqual(events1950keys, None, 'Should be None')
