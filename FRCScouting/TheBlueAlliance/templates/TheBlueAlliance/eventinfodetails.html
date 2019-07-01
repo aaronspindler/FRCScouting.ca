@@ -2,11 +2,11 @@
 {% load staticfiles %}
 
 {% block title %}
-Event Information
+Event Information | {{event.key}}
 {% endblock %}
 
 {% block pageheader %}
-Event Information
+Event Information | {{event.key}}
 {% endblock %}
 
 {% block content %}
@@ -18,7 +18,7 @@ Event Information
   {% endif %}
   <div class="row">
     <div class="col-md-6">
-      
+      {{event.name}}
     </div>
   </div>
 </div>

@@ -10,21 +10,21 @@ def teaminfo(request):
         teamkey = request.POST['teamnumberinput']
         if(validators.validate_teamkey(teamkey)):
             team = getters.get_team(teamkey)
-            return render(request, 'TheBlueAlliance/teaminformationdetails.html/', {'team': team})
+            return render(request, 'TheBlueAlliance/teaminfodetails.html/', {'team': team})
         else:
             error = 'Error: The teamkey was entered in the wrong format!'
-            return render(request, 'TheBlueAlliance/teaminformation.html/', {'error': error})
+            return render(request, 'TheBlueAlliance/teaminfo.html/', {'error': error})
     else:
-        return render(request, 'TheBlueAlliance/teaminformation.html')
+        return render(request, 'TheBlueAlliance/teaminfo.html')
 
 @login_required(login_url="/account/login")
 def teaminfodetails(request, teamkey):
     if(validators.validate_teamkey(teamkey)):
         team = getters.get_team(teamkey)
-        return render(request, 'TheBlueAlliance/teaminformationdetails.html/', {'team': team})
+        return render(request, 'TheBlueAlliance/teaminfodetails.html/', {'team': team})
     else:
         error = 'Error: The teamkey was entered in the wrong format!'
-        return render(request, 'TheBlueAlliance/teaminformation.html/', {'error': error})
+        return render(request, 'TheBlueAlliance/teaminfo.html/', {'error': error})
 
 @login_required(login_url="/account/login")
 def eventinfo(request):
