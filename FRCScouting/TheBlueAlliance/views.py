@@ -32,10 +32,11 @@ def eventinfo(request):
 
 @staff_member_required
 def events_loaddata(request):
-    getters.get_events_by_year(2016)
-    getters.get_events_by_year(2017)
-    getters.get_events_by_year(2018)
-    getters.get_events_by_year(2019)
+    #TODO
+    #getters.get_events_by_year(2016)
+    #getters.get_events_by_year(2017)
+    #getters.get_events_by_year(2018)
+    #getters.get_events_by_year(2019)
     return render(request, 'TheBlueAlliance/admin.html', {'events' : 'Loaded Successfully'})
 
 @staff_member_required
