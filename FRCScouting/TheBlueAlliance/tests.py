@@ -73,9 +73,12 @@ class GettersTestCase(TestCase):
         event2000abcd = getters.get_event('2000abcd')
         self.assertEqual(event2000abcd, None, 'Should be None')
 
-    # def test_get_events_by_year(self):
-    #     events2019 = getters.get_events_by_year(2019)
-    #     self.assertEqual(len(events2019),242, 'Should be 242')
-    #
-    #     events1950 = getters.test_get_events_by_year(1950)
-    #     self.assertEqual(events1950, None, 'Should be None')
+    def test_get_events_by_year(self):
+        #Currently does not work because of a bug in API
+        #See: https://github.com/TBA-API/tba-api-client-python/pull/3
+
+        # events2019 = getters.get_events_by_year(2019)
+        # self.assertEqual(len(events2019),242, 'Should be 242')
+
+        events1950 = getters.get_events_by_year(1950)
+        self.assertEqual(events1950, None, 'Should be None')

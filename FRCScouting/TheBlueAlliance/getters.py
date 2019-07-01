@@ -35,13 +35,13 @@ def get_event(eventkey):
     except ApiException as e:
         return None
 
-# def get_events_by_year(year):
-#     configuration = tbaapiv3client.Configuration()
-#     configuration.api_key['X-TBA-Auth-Key'] = settings.THE_BLUE_ALLIANCE_KEY
-#     api_instance = tbaapiv3client.EventApi(tbaapiv3client.ApiClient(configuration))
-#     try:
-#         api_response = api_instance.get_events_by_year(year)
-#         info = api_response
-#         return info
-#     except ApiException as e:
-#         return None
+def get_events_by_year(year):
+    configuration = tbaapiv3client.Configuration()
+    configuration.api_key['X-TBA-Auth-Key'] = settings.THE_BLUE_ALLIANCE_KEY
+    api_instance = tbaapiv3client.EventApi(tbaapiv3client.ApiClient(configuration))
+    try:
+        api_response = api_instance.get_events_by_year(year)
+        info = api_response
+        return info
+    except ApiException as e:
+        return None
