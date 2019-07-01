@@ -75,7 +75,7 @@ class GettersTestCase(TestCase):
 
     def test_get_events_by_year(self):
         #Currently does not work because of a bug in API
-        #See: https://github.com/TBA-API/tba-api-client-python/pull/3
+        #See: https://github.com/the-blue-alliance/the-blue-alliance/pull/2543
 
         # events2019 = getters.get_events_by_year(2019)
         # self.assertEqual(len(events2019),242, 'Should be 242')
