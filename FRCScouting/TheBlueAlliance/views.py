@@ -9,7 +9,7 @@ def teaminfo(request):
     if request.method == 'POST':
         teamkey = request.POST['teamnumberinput']
         if(validators.validate_teamkey(teamkey)):
-            team = getters.get_team_info(teamkey)
+            team = getters.get_team(teamkey)
             return render(request, 'TheBlueAlliance/teaminformationdetails.html/', {'team': team})
         else:
             error = 'Error: The teamkey was entered in the wrong format!'
@@ -20,7 +20,7 @@ def teaminfo(request):
 @login_required(login_url="/account/login")
 def teaminfodetails(request, teamkey):
     if(validators.validate_teamkey(teamkey)):
-        team = getters.get_team_info(teamkey)
+        team = getters.get_team(teamkey)
         return render(request, 'TheBlueAlliance/teaminformationdetails.html/', {'team': team})
     else:
         error = 'Error: The teamkey was entered in the wrong format!'
@@ -32,10 +32,10 @@ def eventinfo(request):
 
 @staff_member_required
 def events_loaddata(request):
-    getters.get_events_for_year(2016)
-    getters.get_events_for_year(2017)
-    getters.get_events_for_year(2018)
-    getters.get_events_for_year(2019)
+    getters.get_events_by_year(2016)
+    getters.get_events_by_year(2017)
+    getters.get_events_by_year(2018)
+    getters.get_events_by_year(2019)
     return render(request, 'TheBlueAlliance/admin.html', {'events' : 'Loaded Successfully'})
 
 @staff_member_required

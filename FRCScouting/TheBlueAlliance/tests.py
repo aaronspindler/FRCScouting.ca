@@ -1,5 +1,4 @@
 from django.test import TestCase
-from TheBlueAlliance.models import Team,Event
 from . import validators, getters
 
 class UtilsTestCase(TestCase):
@@ -20,27 +19,21 @@ class UtilsTestCase(TestCase):
         self.assertEqual(validators.validate_teamkey('3710'), True, "Should be True")
         self.assertEqual(validators.validate_teamkey(3710), True, "Should be True")
 
-    def test_get_team_info(self):
+    def test_get_team(self):
         #Should be successful
-        team3710 = getters.get_team_info(3710)
-        self.assertEqual(team3710.number, 3710, "Should be 3710")
+        team3710 = getters.get_team(3710)
+        self.assertEqual(team3710.team_number, 3710, "Should be 3710")
         self.assertEqual(team3710.nickname, 'FSS Cyber Falcons', "Should be FSS Cyber Falcons")
         self.assertEqual(team3710.website, 'http://www.cyberfalcons.com', "Should be http://www.cyberfalcons.com")
-        self.assertEqual(team3710.rookieyear, 2011, "Should be 2011")
-
-        team3710db = Team.objects.get(number=3710)
-        self.assertEqual(team3710db.number, 3710, "Should be 3710")
-        self.assertEqual(team3710db.nickname, 'FSS Cyber Falcons', "Should be FSS Cyber Falcons")
-        self.assertEqual(team3710db.website, 'http://www.cyberfalcons.com', "Should be http://www.cyberfalcons.com")
-        self.assertEqual(team3710db.rookieyear, 2011, "Should be 2011")
+        self.assertEqual(team3710.rookie_year, 2011, "Should be 2011")
 
         #Should 404
-        team2 = getters.get_team_info(2)
+        team2 = getters.get_team(2)
         self.assertEqual(team2, None, "Should be None")
 
-    def test_get_event_info(self):
+def test_get_event(self):
         #Should be successful
-        event2019abca = getters.get_event_info('2019abca')
+        event2019abca = getters.get_event('2019abca')
         self.assertEqual(event2019abca.address, "7555 Falconridge Blvd NE #10, Calgary, AB T3J 0C9, Canada")
         self.assertEqual(event2019abca.city, "Calgary")
         self.assertEqual(event2019abca.country, "Canada")
@@ -74,52 +67,13 @@ class UtilsTestCase(TestCase):
         self.assertEqual(event2019abca.week, 5)
         self.assertEqual(event2019abca.year, 2019)
 
-
         #Should 404
-        event2000abcd = getters.get_event_info('2000abcd')
-        self.assertEqual(event2000abcd, None)
+        event2000abcd = getters.get_event('2000abcd')
+        self.assertEqual(event2000abcd, None, 'Should be None')
 
-    def test_get_events_for_year(self):
-        #Check if right amount of objects are returned
-        year2019 = getters.get_events_for_year(2019)
-        self.assertEqual(len(year2019),242)
+def test_get_events_by_year(self):
+    events2019 = getters.get_events_by_year(2019)
+    self.assertEqual(len(events2019),242, 'Should be 242')
 
-        #Check if objects went to DB
-        allEvents = Event.objects.count()
-        self.assertEqual(allEvents,242)
-
-        #Should be successful
-        event0 = year2019["2019abca"]
-        self.assertEqual(event0.address, "7555 Falconridge Blvd NE #10, Calgary, AB T3J 0C9, Canada")
-        self.assertEqual(event0.city, "Calgary")
-        self.assertEqual(event0.country, "Canada")
-        self.assertEqual(event0.district, None)
-        self.assertEqual(event0.division_keys, [])
-        self.assertEqual(event0.end_date, "2019-04-06")
-        self.assertEqual(event0.event_code, "abca")
-        self.assertEqual(event0.event_type, 0)
-        self.assertEqual(event0.event_type_string, "Regional")
-        self.assertEqual(event0.first_event_code, "ABCA")
-        self.assertEqual(event0.first_event_id, None)
-        self.assertEqual(event0.gmaps_place_id, "ChIJWxy6PJljcVMRpVrD88vyEdY")
-        self.assertEqual(event0.gmaps_url, "https://maps.google.com/?cid=15425377156502608549")
-        self.assertEqual(event0.key, "2019abca")
-        self.assertEqual(event0.lat, 51.1202633)
-        self.assertEqual(event0.lng, -113.9486288)
-        self.assertEqual(event0.location_name, "The Genesis Centre")
-        self.assertEqual(event0.name, "Canadian Rockies Regional")
-        self.assertEqual(event0.parent_event_key, None)
-        self.assertEqual(event0.playoff_type, None)
-        self.assertEqual(event0.playoff_type_string, None)
-        self.assertEqual(event0.postal_code, "T3J 0C9")
-        self.assertEqual(event0.short_name, "Canadian Rockies")
-        self.assertEqual(event0.start_date, "2019-04-03")
-        self.assertEqual(event0.state_prov, "AB")
-        self.assertEqual(event0.timezone, "America/Edmonton")
-
-        #Checking functions of object
-        self.assertEqual(event0.location(), "Calgary, AB, Canada")
-
-        #Should 404
-        year1950 = getters.get_events_for_year(1950)
-        self.assertEqual(year1950,None)
+    events1950 = getters.test_get_events_by_year(1950)
+    self.assertEqual(events1950, None, 'Should be None')

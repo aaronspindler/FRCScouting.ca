@@ -13,8 +13,8 @@ Team Information | FRC {{team.number}}
 <div class="container">
   <div class="row">
     <div class="col-md-8">
-      {% if team.number %}
-      <h5>Team Number: {{team.number}}</h5>
+      {% if team.team_number %}
+      <h5>Team Number: {{team.team_number}}</h5>
       {% endif %}
 
       {% if team.name %}
@@ -35,8 +35,8 @@ Team Information | FRC {{team.number}}
       <h5>Website: <a href="{{team.website}}">{{team.website}}</a></h5>
       {% endif %}
 
-      {% if team.rookieyear %}
-      <h5>Rookie Year: {{team.rookieyear}}</h5>
+      {% if team.rookie_year %}
+      <h5>Rookie Year: {{team.rookie_year}}</h5>
       {% endif %}
 
     </div>
