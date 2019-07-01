@@ -1,7 +1,8 @@
 from django.test import TestCase
 from . import validators, getters
+from datetime import date
 
-class UtilsTestCase(TestCase):
+class ValidatorsTestCase(TestCase):
     def test_validate_teamkey(self):
         self.assertEqual(validators.validate_teamkey(123), True, "Should be True")
         self.assertEqual(validators.validate_teamkey(1), True, "Should be True")
@@ -19,6 +20,7 @@ class UtilsTestCase(TestCase):
         self.assertEqual(validators.validate_teamkey('3710'), True, "Should be True")
         self.assertEqual(validators.validate_teamkey(3710), True, "Should be True")
 
+class GettersTestCase(TestCase):
     def test_get_team(self):
         #Should be successful
         team3710 = getters.get_team(3710)
@@ -31,7 +33,7 @@ class UtilsTestCase(TestCase):
         team2 = getters.get_team(2)
         self.assertEqual(team2, None, "Should be None")
 
-def test_get_event(self):
+    def test_get_event(self):
         #Should be successful
         event2019abca = getters.get_event('2019abca')
         self.assertEqual(event2019abca.address, "7555 Falconridge Blvd NE #10, Calgary, AB T3J 0C9, Canada")
@@ -39,7 +41,7 @@ def test_get_event(self):
         self.assertEqual(event2019abca.country, "Canada")
         self.assertEqual(event2019abca.district, None)
         self.assertEqual(event2019abca.division_keys, [])
-        self.assertEqual(event2019abca.end_date, "2019-04-06")
+        self.assertEqual(event2019abca.end_date, date(2019,4,6))
         self.assertEqual(event2019abca.event_code, "abca")
         self.assertEqual(event2019abca.event_type, 0)
         self.assertEqual(event2019abca.event_type_string, "Regional")
@@ -57,7 +59,7 @@ def test_get_event(self):
         self.assertEqual(event2019abca.playoff_type_string, None)
         self.assertEqual(event2019abca.postal_code, "T3J 0C9")
         self.assertEqual(event2019abca.short_name, "Canadian Rockies")
-        self.assertEqual(event2019abca.start_date, "2019-04-03")
+        self.assertEqual(event2019abca.start_date, date(2019,4,3))
         self.assertEqual(event2019abca.state_prov, "AB")
         self.assertEqual(event2019abca.timezone, "America/Edmonton")
 
@@ -71,9 +73,9 @@ def test_get_event(self):
         event2000abcd = getters.get_event('2000abcd')
         self.assertEqual(event2000abcd, None, 'Should be None')
 
-def test_get_events_by_year(self):
-    events2019 = getters.get_events_by_year(2019)
-    self.assertEqual(len(events2019),242, 'Should be 242')
-
-    events1950 = getters.test_get_events_by_year(1950)
-    self.assertEqual(events1950, None, 'Should be None')
+    # def test_get_events_by_year(self):
+    #     events2019 = getters.get_events_by_year(2019)
+    #     self.assertEqual(len(events2019),242, 'Should be 242')
+    #
+    #     events1950 = getters.test_get_events_by_year(1950)
+    #     self.assertEqual(events1950, None, 'Should be None')
