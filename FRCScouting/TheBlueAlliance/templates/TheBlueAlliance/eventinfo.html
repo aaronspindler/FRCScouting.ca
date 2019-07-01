@@ -22,7 +22,7 @@ Event Information
         {% csrf_token %}
         Select an event:
         <br>
-        <select class="custom-select mr-md-4" id="inlineFormCustomSelect">
+        <select name="eventselector" class="custom-select mr-md-4" id="inlineFormCustomSelect">
 
           <option value="2016" disabled selected>-- 2016 --</option>
           {%for event in events2016%}
