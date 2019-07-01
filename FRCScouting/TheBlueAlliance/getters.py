@@ -76,3 +76,10 @@ def get_events_by_year_simple(year):
         return info
     except ApiException as e:
         return None
+
+def get_all_events_simple():
+    events = {}
+    for year in range(2016, 2020):
+        events[year] = get_events_by_year_simple(year)
+
+    return events

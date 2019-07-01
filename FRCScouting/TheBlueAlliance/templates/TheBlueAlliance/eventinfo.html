@@ -23,10 +23,25 @@ Event Information
         Select an event:
         <br>
         <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-          <option selected>Choose...</option>
-          <option value="2016" disabled>-- 2016 --</option>
+
+          <option value="2016" disabled selected>-- 2016 --</option>
           {%for event in events2016%}
-            <option value ="{{event}}">{{event}}</option>
+            <option value ="{{event.key}}">{{event.key}} - {{event.name}}</option>
+          {% endfor %}
+
+          <option value="2017" disabled>-- 2017 --</option>
+          {%for event in events2017%}
+            <option value ="{{event.key}}">{{event.key}} - {{event.name}}</option>
+          {% endfor %}
+
+          <option value="2018" disabled>-- 2018 --</option>
+          {%for event in events2018%}
+            <option value ="{{event.key}}">{{event.key}} - {{event.name}}</option>
+          {% endfor %}
+
+          <option value="2019" disabled>-- 2019 --</option>
+          {%for event in events2019%}
+            <option value ="{{event.key}}">{{event.key}} - {{event.name}}</option>
           {% endfor %}
         </select>
         <br>

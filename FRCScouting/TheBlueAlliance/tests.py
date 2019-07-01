@@ -83,6 +83,15 @@ class GettersTestCase(TestCase):
         events1950 = getters.get_events_by_year(1950)
         self.assertEqual(events1950, None, 'Should be None')
 
+    def test_get_events_by_year_simple(self):
+        #Should succeed
+        events2019 = getters.get_events_by_year_simple(2019)
+        self.assertEqual(len(events2019),242, 'Should be 242')
+
+        #Should 404
+        events1950 = getters.get_events_by_year_simple(1950)
+        self.assertEqual(events1950, None, 'Should be None')
+
     def test_get_events_by_year_keys(self):
         #Should succeed
         events2019keys = getters.get_events_by_year_keys(2019)
@@ -108,3 +117,11 @@ class GettersTestCase(TestCase):
         self.assertEqual(len(allkeys[2017]), 255)
         self.assertEqual(len(allkeys[2018]), 278)
         self.assertEqual(len(allkeys[2019]), 242)
+
+    def test_get_all_events_simple(self):
+        allEvents = getters.get_all_events_simple()
+        self.assertEqual(len(allEvents), 4)
+        self.assertEqual(len(allEvents[2016]), 203)
+        self.assertEqual(len(allEvents[2017]), 255)
+        self.assertEqual(len(allEvents[2018]), 278)
+        self.assertEqual(len(allEvents[2019]), 242)

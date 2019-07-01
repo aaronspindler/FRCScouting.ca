@@ -28,11 +28,11 @@ def teaminfodetails(request, teamkey):
 
 @login_required(login_url="/account/login")
 def eventinfo(request):
-    all_event_keys = getters.get_all_event_keys()
-    events2016 = all_event_keys[2016]
-    events2017 = all_event_keys[2017]
-    events2018 = all_event_keys[2018]
-    events2019 = all_event_keys[2019]
+    all_event_simple = getters.get_all_events_simple()
+    events2016 = all_event_simple[2016]
+    events2017 = all_event_simple[2017]
+    events2018 = all_event_simple[2018]
+    events2019 = all_event_simple[2019]
 
     return render(request, 'TheBlueAlliance/eventinfo.html', {'events2016' : events2016, 'events2017' : events2017, 'events2018' : events2018, 'events2019' : events2019 })
 
