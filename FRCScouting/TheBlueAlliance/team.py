@@ -32,7 +32,7 @@ def get_all_teams_slow():
             teams.append(team)
         except Exception as e:
             continue
-    return None
+    return teams
 
 def get_all_teams_by_page():
     teams = []
