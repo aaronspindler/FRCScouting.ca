@@ -1,6 +1,9 @@
 from django.test import TestCase
-from . import validators, getters
 from datetime import date
+
+from . import validators
+from .team import get_team
+from .event import get_event, get_all_event_keys, get_all_events_simple, get_events_by_year, get_events_by_year_simple, get_events_by_year_keys
 
 class ValidatorsTestCase(TestCase):
     def test_validate_teamkey(self):
@@ -23,19 +26,19 @@ class ValidatorsTestCase(TestCase):
 class GettersTestCase(TestCase):
     def test_get_team(self):
         #Should be successful
-        team3710 = getters.get_team(3710)
+        team3710 = get_team(3710)
         self.assertEqual(team3710.team_number, 3710, "Should be 3710")
         self.assertEqual(team3710.nickname, 'FSS Cyber Falcons', "Should be FSS Cyber Falcons")
         self.assertEqual(team3710.website, 'http://www.cyberfalcons.com', "Should be http://www.cyberfalcons.com")
         self.assertEqual(team3710.rookie_year, 2011, "Should be 2011")
 
         #Should 404
-        team2 = getters.get_team(2)
+        team2 = get_team(2)
         self.assertEqual(team2, None, "Should be None")
 
     def test_get_event(self):
         #Should be successful
-        event2019abca = getters.get_event('2019abca')
+        event2019abca = get_event('2019abca')
         self.assertEqual(event2019abca.address, "7555 Falconridge Blvd NE #10, Calgary, AB T3J 0C9, Canada")
         self.assertEqual(event2019abca.city, "Calgary")
         self.assertEqual(event2019abca.country, "Canada")
@@ -70,7 +73,7 @@ class GettersTestCase(TestCase):
         self.assertEqual(event2019abca.year, 2019)
 
         #Should 404
-        event2000abcd = getters.get_event('2000abcd')
+        event2000abcd = get_event('2000abcd')
         self.assertEqual(event2000abcd, None, 'Should be None')
 
     def test_get_events_by_year(self):
@@ -80,38 +83,38 @@ class GettersTestCase(TestCase):
         # events2019 = getters.get_events_by_year(2019)
         # self.assertEqual(len(events2019),242, 'Should be 242')
 
-        events1950 = getters.get_events_by_year(1950)
+        events1950 = get_events_by_year(1950)
         self.assertEqual(events1950, None, 'Should be None')
 
     def test_get_events_by_year_simple(self):
         #Should succeed
-        events2019 = getters.get_events_by_year_simple(2019)
+        events2019 = get_events_by_year_simple(2019)
         self.assertEqual(len(events2019),242, 'Should be 242')
 
         #Should 404
-        events1950 = getters.get_events_by_year_simple(1950)
+        events1950 = get_events_by_year_simple(1950)
         self.assertEqual(events1950, None, 'Should be None')
 
     def test_get_events_by_year_keys(self):
         #Should succeed
-        events2019keys = getters.get_events_by_year_keys(2019)
+        events2019keys = get_events_by_year_keys(2019)
         self.assertEqual(len(events2019keys), 242, 'Should be 242')
 
-        events2018keys = getters.get_events_by_year_keys(2018)
+        events2018keys = get_events_by_year_keys(2018)
         self.assertEqual(len(events2018keys), 278, 'Should be 278')
 
-        events2017keys = getters.get_events_by_year_keys(2017)
+        events2017keys = get_events_by_year_keys(2017)
         self.assertEqual(len(events2017keys), 255, 'Should be 255')
 
-        events2016keys = getters.get_events_by_year_keys(2016)
+        events2016keys = get_events_by_year_keys(2016)
         self.assertEqual(len(events2016keys), 203, 'Should be 203')
 
         #Should 404
-        events1950keys = getters.get_events_by_year_keys(1950)
+        events1950keys = get_events_by_year_keys(1950)
         self.assertEqual(events1950keys, None, 'Should be None')
 
     def test_get_all_event_keys(self):
-        allkeys = getters.get_all_event_keys()
+        allkeys = get_all_event_keys()
         self.assertEqual(len(allkeys), 4)
         self.assertEqual(len(allkeys[2016]), 203)
         self.assertEqual(len(allkeys[2017]), 255)
@@ -119,7 +122,7 @@ class GettersTestCase(TestCase):
         self.assertEqual(len(allkeys[2019]), 242)
 
     def test_get_all_events_simple(self):
-        allEvents = getters.get_all_events_simple()
+        allEvents = get_all_events_simple()
         self.assertEqual(len(allEvents), 4)
         self.assertEqual(len(allEvents[2016]), 203)
         self.assertEqual(len(allEvents[2017]), 255)

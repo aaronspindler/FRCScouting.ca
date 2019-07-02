@@ -1,14 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-from . import validators, getters
+from . import validators
+from .team import get_team
+from .event import get_event, get_all_events_simple
 
 @login_required(login_url="/account/login")
 def teaminfo(request):
     if request.method == 'POST':
         teamkey = request.POST['teamnumberinput']
         if(validators.validate_teamkey(teamkey)):
-            team = getters.get_team(teamkey)
+            team = get_team(teamkey)
             return render(request, 'TheBlueAlliance/teaminfodetails.html/', {'team': team})
         else:
             error = 'Error: The teamkey was entered in the wrong format!'
@@ -19,7 +21,7 @@ def teaminfo(request):
 @login_required(login_url="/account/login")
 def teaminfodetails(request, teamkey):
     if(validators.validate_teamkey(teamkey)):
-        team = getters.get_team(teamkey)
+        team = get_team(teamkey)
         return render(request, 'TheBlueAlliance/teaminfodetails.html/', {'team': team})
     else:
         error = 'Error: The teamkey was entered in the wrong format!'
@@ -29,10 +31,10 @@ def teaminfodetails(request, teamkey):
 def eventinfo(request):
     if request.method == 'POST':
         eventkey = request.POST['eventselector']
-        event = getters.get_event(eventkey)
+        event = get_event(eventkey)
         return render(request, 'TheBlueAlliance/eventinfodetails.html/', {'event': event})
     else:
-        all_event_simple = getters.get_all_events_simple()
+        all_event_simple = get_all_events_simple()
         events2016 = all_event_simple[2016]
         events2017 = all_event_simple[2017]
         events2018 = all_event_simple[2018]
@@ -41,7 +43,7 @@ def eventinfo(request):
 
 @login_required(login_url="/account/login")
 def eventinfodetails(request, eventkey):
-    event = getters.get_event(eventkey)
+    event = get_event(eventkey)
     if event:
         return render(request, 'TheBlueAlliance/eventinfodetails.html/', {'event': event})
     else:
