@@ -21,7 +21,7 @@ class local_event(models.Model):
     name = models.TextField(null=True)
     parent_event_key = models.TextField(null=True)
     playoff_type = models.TextField(null=True)
-    playoff_type_string =models.TextField(null=True)
+    playoff_type_string = models.TextField(null=True)
     postal_code = models.TextField(null=True)
     short_name = models.TextField(null=True)
     start_date = models.TextField(null=True)

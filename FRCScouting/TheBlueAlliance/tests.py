@@ -2,7 +2,7 @@ from django.test import TestCase
 from datetime import date
 
 from . import validators
-from .team import get_team
+from .team import get_team, get_teams, get_all_teams_by_page, get_all_teams_slow
 from .event import get_event, get_all_event_keys, get_all_events_simple, get_events_by_year, get_events_by_year_simple, get_events_by_year_keys
 
 class ValidatorsTestCase(TestCase):
@@ -23,7 +23,7 @@ class ValidatorsTestCase(TestCase):
         self.assertEqual(validators.validate_teamkey('3710'), True, "Should be True")
         self.assertEqual(validators.validate_teamkey(3710), True, "Should be True")
 
-class GettersTestCase(TestCase):
+class TeamTestCase(TestCase):
     def test_get_team(self):
         #Should be successful
         team3710 = get_team(3710)
@@ -36,6 +36,19 @@ class GettersTestCase(TestCase):
         team2 = get_team(2)
         self.assertEqual(team2, None, "Should be None")
 
+    # Currently broken because some teams have "rookie_year" : null
+    # def test_get_teams(self):
+    #     page = get_teams(1)
+    #     self.assertEqual(len(page), 500)
+    # def test_get_all_teams_by_page(self):
+    #     all_teams = get_all_teams_by_page()
+    #     self.assertEqual(len(all_teams), 5000)
+
+    def test_get_all_teams_slow(self):
+        teams = get_all_teams_slow()
+        self.assertEqual(len(teams), 5000)
+
+class EventTestCase(TestCase):
     def test_get_event(self):
         #Should be successful
         event2019abca = get_event('2019abca')
