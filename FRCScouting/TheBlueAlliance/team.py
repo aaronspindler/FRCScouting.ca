@@ -24,9 +24,12 @@ def get_teams(page_num):
     except ApiException as e:
         return None
 
+# WARNING: VERY TIME CONSUMING
 def get_all_teams_slow():
     teams = []
     for team_num in range(5000):
+        if team_num % 500 is 0:
+            print("Slowly getting all teams!")
         try:
             team = get_team(team_num)
             teams.append(team)
@@ -34,6 +37,7 @@ def get_all_teams_slow():
             continue
     return teams
 
+#Currently broken
 def get_all_teams_by_page():
     teams = []
     for page in range(20):

@@ -46,7 +46,7 @@ class TeamTestCase(TestCase):
 
     def test_get_all_teams_slow(self):
         teams = get_all_teams_slow()
-        self.assertEqual(len(teams), 5000)
+        self.assertEqual(len(teams), 4707)
 
 class EventTestCase(TestCase):
     def test_get_event(self):
