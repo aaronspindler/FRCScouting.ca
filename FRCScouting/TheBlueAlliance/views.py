@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-
 from . import validators, getters
 
 @login_required(login_url="/account/login")
@@ -49,12 +48,19 @@ def eventinfodetails(request, eventkey):
         error = 'Error: The eventkey entered is invalid!'
         return render(request, 'TheBlueAlliance/eventinfo.html/', {'error': error})
 
+
+
+
+@staff_member_required
+def admin_controlpanel(request):
+    return render(request, 'TheBlueAlliance/admin.html')
+
 @staff_member_required
 def events_loaddata(request):
     #TODO : Load Event Data
-    return render(request, 'TheBlueAlliance/admin.html', {'events' : 'Loaded Successfully'})
+    return render(request, 'TheBlueAlliance/admin.html', {'message' : 'Events Loaded Successfully'})
 
 @staff_member_required
 def teams_loaddata(request):
     #TODO : Load Team Data
-    return render(request, 'TheBlueAlliance/admin.html', {'teams': 'Loaded Successfully'})
+    return render(request, 'TheBlueAlliance/admin.html', {'message': 'Teams Loaded Successfully'})

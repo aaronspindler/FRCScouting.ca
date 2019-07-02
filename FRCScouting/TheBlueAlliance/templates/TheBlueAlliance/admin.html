@@ -6,26 +6,29 @@ Admin
 {% endblock %}
 
 {% block pageheader %}
-Admin
+Admin | Control Panel
 {% endblock %}
 
 {% block content %}
 <div class="container">
   {% if error %}
-  {{error}}
-  <br>
-  <br>
+    <font color="red">{{error}}</font>
+    <br>
+    <br>
   {% endif %}
+
+  {% if message %}
+    <font color="green">{{message}}</font>
+    <br>
+    <br>
+  {% endif %}
+
   <div class="row">
-    <div class="col-md-6">
-      {% if events %}
-      Events: {{events}}
+    <div class="col-md-11">
+      <h2>Load Data</h2>
+      <a href="{% url 'tba_admin_teams_loaddata' %}" class="btn btn-info ml-4 mr-sm-2">Load Teams</a>
       <br>
-      {% endif %}
-      {% if teams %}
-      Teams: {{teams}}
-      <br>
-      {% endif %}
+      <a href="{% url 'tba_admin_events_loaddata' %}" class="btn btn-info mt-2 ml-4 mr-sm-2">Load Events</a>
     </div>
   </div>
 </div>
