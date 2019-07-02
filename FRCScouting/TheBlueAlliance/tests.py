@@ -2,7 +2,7 @@ from django.test import TestCase
 from datetime import date
 
 from . import validators
-from .team import get_team
+from .team import get_team, testRequest
 from .event import get_event, get_all_event_keys, get_all_events_simple, get_events_by_year, get_events_by_year_simple, get_events_by_year_keys
 
 class ValidatorsTestCase(TestCase):
@@ -35,6 +35,9 @@ class TeamTestCase(TestCase):
         #Should 404
         team2 = get_team(2)
         self.assertEqual(team2, None, "Should be None")
+
+        request = testRequest()
+        self.assertEqual(request, None)
 
 class EventTestCase(TestCase):
     def test_get_event(self):
