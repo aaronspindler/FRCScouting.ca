@@ -53,26 +53,27 @@ gtag('config', 'UA-100881995-4');
 <link href="dashboard.css" rel="stylesheet">
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="{% url 'dashboard'%}"><img src= "{% static "ContentPages/logo_transparent.png"%}" height = 50 width = 245/></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="{%url 'gamemanuals'%}">Game Manuals</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout<span class="sr-only">(current)</span></a>
-
-        </li>
-      </ul>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="{% url 'gamemanuals'%}">Game Manuals</a>
+        <a class="nav-item nav-link" href="{% url 'blog'%}">Blog</a>
+      </div>
     </div>
+    {% if user.is_authenticated %}
+    <a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+    <form id="logout" method="POST" action="{% url 'logout'%}">
+      {% csrf_token %}
+      <input type="hidden"/>
+    </form>
+    {% endif %}
   </nav>
 
-  <br>
-  <div class="container-fluid pt-5">
+  <div class="container-fluid pt-2">
     <div class="row">
       <nav class="col-md-2 d-none d-md-block bg-light sidebar">
         <div class="sidebar-sticky">
