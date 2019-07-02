@@ -40,6 +40,15 @@ def eventinfo(request):
         events2019 = all_event_simple[2019]
         return render(request, 'TheBlueAlliance/eventinfo.html', {'events2016' : events2016, 'events2017' : events2017, 'events2018' : events2018, 'events2019' : events2019 })
 
+@login_required(login_url="/account/login")
+def eventinfodetails(request, eventkey):
+    event = getters.get_event(eventkey)
+    if event:
+        return render(request, 'TheBlueAlliance/eventinfodetails.html/', {'event': event})
+    else:
+        error = 'Error: The eventkey entered is invalid!'
+        return render(request, 'TheBlueAlliance/eventinfo.html/', {'error': error})
+
 @staff_member_required
 def events_loaddata(request):
     #TODO : Load Event Data
