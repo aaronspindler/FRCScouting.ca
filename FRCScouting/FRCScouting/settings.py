@@ -56,6 +56,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+AUTH_USER_MODEL = 'Accounts.User'
+
 ROOT_URLCONF = 'FRCScouting.urls'
 
 TEMPLATES = [
