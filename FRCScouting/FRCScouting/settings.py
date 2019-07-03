@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'Scouting.apps.ScoutingConfig',
     'Accounts.apps.AccountsConfig',
     'Contact.apps.ContactConfig',
+    'eggs.apps.EggsConfig',
 ]
 
 MIDDLEWARE = [
