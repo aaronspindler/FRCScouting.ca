@@ -32,6 +32,12 @@ def login(request):
     else:
         return render(request, 'Accounts/login.html')
 
+def settings(request):
+    if request.method == 'POST':
+        return render(request, 'Accounts/settings.html')
+    else:
+        return render(request, 'Accounts/settings.html')
+
 def logout(request):
     if request.method == 'POST':
         auth.logout(request)
