@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
+from .models import User
 from django.contrib import auth
+from django_countries import countries
+
+
 
 def signup(request):
     #The user wants to sign up
@@ -28,15 +31,21 @@ def login(request):
             return redirect('dashboard')
         else:
             return render(request, 'Accounts/login.html', {'error':'Username/Password is incorrect!'})
-
     else:
         return render(request, 'Accounts/login.html')
 
 def settings(request):
     if request.method == 'POST':
-        return render(request, 'Accounts/settings.html')
+        user = User.objects.get(id=request.user.id)
+        user.first_name = request.POST['first_name']
+        user.last_name = request.POST['last_name']
+        user.email = request.POST['email']
+        user.country = request.POST['country']
+        user.team_number = request.POST['team_number']
+        user.save()
+        return render(request, 'Scouting/Dashboard.html', {'message':'Successfully saved settings'})
     else:
-        return render(request, 'Accounts/settings.html')
+        return render(request, 'Accounts/settings.html', {'countries':countries})
 
 def logout(request):
     if request.method == 'POST':

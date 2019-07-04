@@ -9,32 +9,46 @@
   <br>
   <br>
   {% endif %}
+
+  {% if message %}
+  {{message}}
   <br>
-  <form>
+  <br>
+  {% endif %}
+  <br>
+  <form action="{%url 'settings'%}" method="post">
     {% csrf_token %}
     <div class="row">
       <div class="form-group col-md-6">
-        <label for="inputEmail4">First name</label>
-        <input type="email" class="textinput textInput form-control" id="inputEmail4" placeholder="{{user.first_name}}">
+        <label>First name</label>
+        <input type="text" name="first_name" class="textinput textInput form-control" value="{{user.first_name}}">
       </div>
       <div class="form-group col-md-6">
-        <label for="inputPassword4">Last name</label>
-        <input type="password" class="textinput textInput form-control" id="inputPassword4" placeholder="{{user.last_name}}">
-      </div>
-
-      <div class="form-group col-md-6">
-        <label for="inputAddress">Email</label>
-        <input type="text" class="textinput textInput form-control" id="inputAddress" placeholder="{{user.email}}">
+        <label>Last name</label>
+        <input type="text" name="last_name" class="textinput textInput form-control" value="{{user.last_name}}">
       </div>
 
       <div class="form-group col-md-6">
-        <label for="inputEmail4">Country</label>
-        <input type="email" class="form-control" id="inputEmail4" placeholder="{{user.country}}">
+        <label>Email</label>
+        <input type="email" name="email" class="textinput textInput form-control" value="{{user.email}}">
       </div>
 
       <div class="form-group col-md-6">
-        <label for="inputPassword4">Team Number</label>
-        <input type="password" class="textinput textInput form-control" id="inputPassword4" placeholder="{{user.team_number}}">
+        <label>Country</label>
+        <select name="country" class="custom-select mr-md-4">
+          {% for country in countries %}
+            {% if country.code == user.country %}
+              <option selected value="{{ country.code }}">{{ country.name }}</option>
+            {%else%}
+              <option value="{{ country.code }}">{{ country.name }}</option>
+            {%endif%}
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label>Team Number</label>
+        <input type="text" name="team_number" class="textinput textInput form-control" value="{{user.team_number}}">
       </div>
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
