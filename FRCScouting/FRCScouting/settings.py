@@ -45,6 +45,11 @@ INSTALLED_APPS = [
     'Accounts.apps.AccountsConfig',
     'Contact.apps.ContactConfig',
     'eggs.apps.EggsConfig',
+    'Stronghold.apps.StrongholdConfig',
+    'Steamworks.apps.SteamworksConfig',
+    'Powerup.apps.PowerupConfig',
+    'DeepSpace.apps.DeepspaceConfig',
+    'Rise.apps.RiseConfig',
 ]
 
 MIDDLEWARE = [
