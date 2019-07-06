@@ -26,7 +26,7 @@ class BlogPagesLoadTest(TestCase):
         url = reverse('blog')
         response = self.client.get(url)
         self.assertEqual(response.status_code,200)
-        self.assertTemplateUsed(response, 'Blog/allblogs.html')
+        self.assertTemplateUsed(response, 'Blog/blogs.html')
 
 class ScoutingPagesLoadTest(TestCase):
     def test_dashboard(self):
