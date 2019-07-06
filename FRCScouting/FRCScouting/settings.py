@@ -147,6 +147,10 @@ MEDIA_URL = '/media/'
 
 THE_BLUE_ALLIANCE_KEY = 'p8MD1dJfS2xOHD6cX7MIIW1mcFw1GWHuBKlUq9foxjt1Fp4f17B9PoYVreTBLC7a'
 
+#Only thing it can do is lookup maps, so don't event try
+GOOGLE_MAPS_KEY = 'AIzaSyDwLAsY6lVwtiAwAHZQP7jGtoRtt0WyHEY'
+
+
 try:
     from .local_settings import *
 except ImportError:

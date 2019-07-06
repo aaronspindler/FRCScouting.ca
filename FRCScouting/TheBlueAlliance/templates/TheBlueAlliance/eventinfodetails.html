@@ -6,7 +6,7 @@ Event Information | {{event.key}}
 {% endblock %}
 
 {% block pageheader %}
-Event Information | {{event.key}}
+{{event.name}} | {{event.year}} {%if event.district.display_name %}| {{event.district.display_name}} {%endif%}
 {% endblock %}
 
 {% block content %}
@@ -17,8 +17,60 @@ Event Information | {{event.key}}
   <br>
   {% endif %}
   <div class="row">
-    <div class="col-md-11">
-      {{event.name}}
+    <div class="col-md-6">
+      <div style="width: 100%"><iframe width="100%" height="300" src="https://www.google.com/maps/embed/v1/place?key={{map_key}}&q=place_id:{{event.gmaps_place_id}}" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>
+    </div>
+    <div class="col-md-6">
+      <h4>Info</h4>
+      <table style="width:100%">
+      <tr>
+        <td>Event Key: {{event.key}}</td>
+      </tr>
+      <tr>
+        <td><a href="{{event.gmaps_url}}"<address>{{event.address}}</address></a></td>
+      </tr>
+      <tr>
+        <td>Dates: {{event.start_date}} to {{event.end_date}}</td>
+      </tr>
+      {%if event.district.display_name %}
+        <tr>
+          <td>District: {{event.district.display_name}}</td>
+        </tr>
+      {%endif%}
+      <tr>
+        <td>Timezone: {{event.timezone}}</td>
+      </tr>
+      </table>
+      <hr>
+      {%if event.webcasts %}
+      <h4>Webcasts</h4>
+        {%for webcast in event.webcasts%}
+          {%if webcast.type == "youtube"%}
+            <a href="http://www.youtube.com/{{webcast.channel}}" class="btn btn-primary">Youtube</a>
+            {%elif webcast.type == "twitch"%}
+            <a href="http://www.twitch.tv/{{webcast.channel}}" class="btn btn-primary">Twitch</a>
+            {%elif webcast.type == "ustream"%}
+            <a href="http://www.ustream.com/{{webcast.channel}}" class="btn btn-primary">UStream</a>
+            {%elif webcast.type == "iframe"%}
+            {%elif webcast.type == "html5"%}
+            {%elif webcast.type == "rtmp"%}
+            {%elif webcast.type == "lifestream"%}
+            {%elif webcast.type == "direct_link"%}
+            <a href="{{webcast.channel}}" class="btn btn-primary">Livestream</a>
+            {%endif%}
+            {%endfor%}
+      {%endif%}
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-6">
+      <h4>Teams</h4>
+
+    </div>
+    <div class="col-md-6">
+      <h4>Schedule</h4>
+
     </div>
   </div>
 </div>

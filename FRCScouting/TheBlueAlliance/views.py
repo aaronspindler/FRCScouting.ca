@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-
+from django.conf import settings
 from . import validators
 from .team import get_team
 from .event import get_event, get_all_events_simple
@@ -33,7 +33,12 @@ def eventinfo(request):
     if request.method == 'POST':
         eventkey = request.POST['eventselector']
         event = get_event(eventkey)
-        return render(request, 'TheBlueAlliance/eventinfodetails.html/', {'event': event})
+        if event:
+            map_key = settings.GOOGLE_MAPS_KEY
+            return render(request, 'TheBlueAlliance/eventinfodetails.html/', {'event': event, 'map_key':map_key})
+        else:
+            error = 'Error: The eventkey entered is invalid!'
+            return render(request, 'TheBlueAlliance/eventinfo.html/', {'error': error})
     else:
         all_event_simple = get_all_events_simple()
         events2016 = all_event_simple[2016]
@@ -46,13 +51,11 @@ def eventinfo(request):
 def eventinfodetails(request, eventkey):
     event = get_event(eventkey)
     if event:
-        return render(request, 'TheBlueAlliance/eventinfodetails.html/', {'event': event})
+        map_key = settings.GOOGLE_MAPS_KEY
+        return render(request, 'TheBlueAlliance/eventinfodetails.html/', {'event': event, 'map_key':map_key})
     else:
         error = 'Error: The eventkey entered is invalid!'
         return render(request, 'TheBlueAlliance/eventinfo.html/', {'error': error})
-
-
-
 
 @staff_member_required
 def admin_controlpanel(request):
