@@ -4,7 +4,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.conf import settings
 from . import validators
 from .team import get_team
-from .event import get_event, get_all_events_simple
+from .event import get_event, get_all_events_simple, get_event_teams
 
 @login_required(login_url="/account/login")
 def teaminfo(request):
@@ -33,9 +33,11 @@ def eventinfo(request):
     if request.method == 'POST':
         eventkey = request.POST['eventselector']
         event = get_event(eventkey)
-        if event:
+        teams = get_event_teams(eventkey)
+        teams.sort(key=lambda x: x.team_number)
+        if event and teams:
             map_key = settings.GOOGLE_MAPS_KEY
-            return render(request, 'TheBlueAlliance/eventinfodetails.html/', {'event': event, 'map_key':map_key})
+            return render(request, 'TheBlueAlliance/eventinfodetails.html/', {'event': event,'teams': teams, 'map_key':map_key})
         else:
             error = 'Error: The eventkey entered is invalid!'
             return render(request, 'TheBlueAlliance/eventinfo.html/', {'error': error})
@@ -50,9 +52,11 @@ def eventinfo(request):
 @login_required(login_url="/account/login")
 def eventinfodetails(request, eventkey):
     event = get_event(eventkey)
-    if event:
+    teams = get_event_teams(eventkey)
+    teams.sort(key=lambda x: x.team_number)
+    if event and teams:
         map_key = settings.GOOGLE_MAPS_KEY
-        return render(request, 'TheBlueAlliance/eventinfodetails.html/', {'event': event, 'map_key':map_key})
+        return render(request, 'TheBlueAlliance/eventinfodetails.html/', {'event': event,'teams': teams, 'map_key':map_key})
     else:
         error = 'Error: The eventkey entered is invalid!'
         return render(request, 'TheBlueAlliance/eventinfo.html/', {'error': error})

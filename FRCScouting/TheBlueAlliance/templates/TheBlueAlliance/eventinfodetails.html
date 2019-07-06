@@ -10,7 +10,6 @@ Event Information | {{event.key}}
 {% endblock %}
 
 {% block content %}
-<div class="container">
   {% if error %}
   {{error}}
   <br>
@@ -66,14 +65,24 @@ Event Information | {{event.key}}
   <div class="row">
     <div class="col-md-6">
       <h4>Teams</h4>
+      <table style="width:100%">
+        <tr>
+          <th>#</th>
+          <th>Nickname</th>
+          <th>Location</th>
+        </tr>
       {%for team in teams%}
-        
+      <tr>
+        <td>{{team.team_number}}</td>
+        <td><a href='{% url 'tba_teaminfodetail' team.team_number %}'>{{team.nickname}}</a></td>
+        <td>{{team.city}}, {{team.state_prov}}, {{team.country}}</td>
+      </tr>
       {%endfor%}
+      </table>
     </div>
     <div class="col-md-6">
       <h4>Schedule</h4>
 
     </div>
   </div>
-</div>
 {% endblock %}
