@@ -35,7 +35,7 @@ def eventinfo(request):
         event = get_event(eventkey)
         teams = get_event_teams(eventkey)
         teams.sort(key=lambda x: x.team_number)
-        if event and teams:
+        if event:
             map_key = settings.GOOGLE_MAPS_KEY
             return render(request, 'TheBlueAlliance/eventinfodetails.html/', {'event': event,'teams': teams, 'map_key':map_key})
         else:
@@ -54,7 +54,7 @@ def eventinfodetails(request, eventkey):
     event = get_event(eventkey)
     teams = get_event_teams(eventkey)
     teams.sort(key=lambda x: x.team_number)
-    if event and teams:
+    if event:
         map_key = settings.GOOGLE_MAPS_KEY
         return render(request, 'TheBlueAlliance/eventinfodetails.html/', {'event': event,'teams': teams, 'map_key':map_key})
     else:
