@@ -1,44 +1,7 @@
 from django.test import TestCase
 from datetime import date
 
-from . import validators
-from .team import get_team, testRequest
-from .event import get_event, get_all_event_keys, get_all_events_simple, get_events_by_year, get_events_by_year_simple, get_events_by_year_keys
-
-class ValidatorsTestCase(TestCase):
-    def test_validate_teamkey(self):
-        self.assertEqual(validators.validate_teamkey(123), True, "Should be True")
-        self.assertEqual(validators.validate_teamkey(1), True, "Should be True")
-        self.assertEqual(validators.validate_teamkey(12), True, "Should be True")
-        self.assertEqual(validators.validate_teamkey(1234), True, "Should be True")
-        self.assertEqual(validators.validate_teamkey(12345), False, "Should be False")
-        self.assertEqual(validators.validate_teamkey(51234), False, "Should be False")
-        self.assertEqual(validators.validate_teamkey('a1234'), False, "Should be False")
-        self.assertEqual(validators.validate_teamkey('1234'), True, "Should be True")
-        self.assertEqual(validators.validate_teamkey('12345'), False, "Should be False")
-        self.assertEqual(validators.validate_teamkey('test123'), False, "Should be False")
-        self.assertEqual(validators.validate_teamkey('te'), False, "Should be False")
-        self.assertEqual(validators.validate_teamkey(''), False, "Should be False")
-        self.assertEqual(validators.validate_teamkey(0), False, "Should be False")
-        self.assertEqual(validators.validate_teamkey('3710'), True, "Should be True")
-        self.assertEqual(validators.validate_teamkey(3710), True, "Should be True")
-
-class TeamTestCase(TestCase):
-    def test_get_team(self):
-        #Should be successful
-        team3710 = get_team(3710)
-        self.assertEqual(team3710.team_number, 3710, "Should be 3710")
-        self.assertEqual(team3710.nickname, 'FSS Cyber Falcons', "Should be FSS Cyber Falcons")
-        self.assertEqual(team3710.website, 'http://www.cyberfalcons.com', "Should be http://www.cyberfalcons.com")
-        self.assertEqual(team3710.rookie_year, 2011, "Should be 2011")
-
-        #Should 404
-        team2 = get_team(2)
-        self.assertEqual(team2, None, "Should be None")
-
-        #TODO : Get a request to FRC Events API Working
-        #request = testRequest()
-        #self.assertEqual(request, None)
+from TheBlueAlliance.event import *
 
 class EventTestCase(TestCase):
     def test_get_event(self):
@@ -133,3 +96,7 @@ class EventTestCase(TestCase):
         self.assertEqual(len(allEvents[2017]), 255)
         self.assertEqual(len(allEvents[2018]), 278)
         self.assertEqual(len(allEvents[2019]), 242)
+
+    def test_get_event_teams(self):
+        iri2016_teams = get_event_teams("2016iri")
+        self.assertEqual(len(iri2016_teams),69)
