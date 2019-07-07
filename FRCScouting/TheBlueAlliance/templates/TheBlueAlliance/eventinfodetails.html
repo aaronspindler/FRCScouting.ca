@@ -101,15 +101,15 @@ Event Information | {{event.key}}
       {% for match in matches %}
       <tr>
         {% if match.comp_level == "qm"%}
-          <td>Quals {{match.match_number}}</td>
+          <td>Q {{match.match_number}}</td>
         {% elif match.comp_level == "qf"%}
-          <td>Quarters {{match.match_number}} Match {{match.set_number}}</td>
+          <td>QF {{match.match_number}} Match {{match.set_number}}</td>
         {% elif match.comp_level == "sf"%}
-          <td>Semis {{match.match_number}} Match {{match.set_number}}</td>
+          <td>SF {{match.match_number}} Match {{match.set_number}}</td>
         {% elif match.comp_level == "f"%}
-          <td>Finals {{match.match_number}} Match {{match.set_number}}</td>
+          <td>F {{match.match_number}} Match {{match.set_number}}</td>
         {% endif%}
-        <td>{{match.time|timestamp_to_time}}</td>
+        <td>{{match.time|timestamp_to_time|date:"D g:i a" }}</td>
 
         {% for team in match.alliances.red.team_keys%}
           {% if team == user.team_number|teamnum_to_key %}
