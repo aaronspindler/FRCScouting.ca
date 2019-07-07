@@ -66,6 +66,17 @@ def get_event_teams(eventkey):
     except ApiException as e:
         return None
 
+def get_event_matches(eventkey):
+    configuration = tbaapiv3client.Configuration()
+    configuration.api_key['X-TBA-Auth-Key'] = settings.THE_BLUE_ALLIANCE_KEY
+    api_instance = tbaapiv3client.EventApi(tbaapiv3client.ApiClient(configuration))
+    try:
+        api_response = api_instance.get_event_matches(eventkey)
+        info = api_response
+        return info
+    except ApiException as e:
+        return None
+
 def get_all_events_simple():
     events = {}
     for year in range(2016, 2020):

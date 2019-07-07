@@ -56,8 +56,8 @@ class EventTestCase(TestCase):
 
     def test_get_events_by_year_simple(self):
         #Should succeed
-        events2019 = get_events_by_year_simple(2019)
-        self.assertEqual(len(events2019),242, 'Should be 242')
+        events2018 = get_events_by_year_simple(2018)
+        self.assertEqual(len(events2018),278, 'Should be 278')
 
         #Should 404
         events1950 = get_events_by_year_simple(1950)
@@ -66,7 +66,7 @@ class EventTestCase(TestCase):
     def test_get_events_by_year_keys(self):
         #Should succeed
         events2019keys = get_events_by_year_keys(2019)
-        self.assertEqual(len(events2019keys), 242, 'Should be 242')
+        self.assertEqual(len(events2019keys), 243, 'Should be 243')
 
         events2018keys = get_events_by_year_keys(2018)
         self.assertEqual(len(events2018keys), 278, 'Should be 278')
@@ -87,7 +87,7 @@ class EventTestCase(TestCase):
         self.assertEqual(len(allkeys[2016]), 203)
         self.assertEqual(len(allkeys[2017]), 255)
         self.assertEqual(len(allkeys[2018]), 278)
-        self.assertEqual(len(allkeys[2019]), 242)
+        self.assertEqual(len(allkeys[2019]), 243)
 
     def test_get_all_events_simple(self):
         allEvents = get_all_events_simple()
@@ -95,8 +95,12 @@ class EventTestCase(TestCase):
         self.assertEqual(len(allEvents[2016]), 203)
         self.assertEqual(len(allEvents[2017]), 255)
         self.assertEqual(len(allEvents[2018]), 278)
-        self.assertEqual(len(allEvents[2019]), 242)
+        self.assertEqual(len(allEvents[2019]), 243)
 
     def test_get_event_teams(self):
         iri2016_teams = get_event_teams("2016iri")
         self.assertEqual(len(iri2016_teams),69)
+
+    def test_get_event_matches(self):
+        iri2018_matches = get_event_matches('2018iri')
+        self.assertEqual(len(iri2018_matches), 122)

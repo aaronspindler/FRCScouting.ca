@@ -3,8 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.conf import settings
 from . import validators
-from .team import get_team
-from .event import get_event, get_all_events_simple, get_event_teams
+from .team import *
+from .event import *
 
 @login_required(login_url="/account/login")
 def teaminfo(request):
@@ -32,15 +32,7 @@ def teaminfodetails(request, teamkey):
 def eventinfo(request):
     if request.method == 'POST':
         eventkey = request.POST['eventselector']
-        event = get_event(eventkey)
-        teams = get_event_teams(eventkey)
-        teams.sort(key=lambda x: x.team_number)
-        if event:
-            map_key = settings.GOOGLE_MAPS_KEY
-            return render(request, 'TheBlueAlliance/eventinfodetails.html/', {'event': event,'teams': teams, 'map_key':map_key})
-        else:
-            error = 'Error: The eventkey entered is invalid!'
-            return render(request, 'TheBlueAlliance/eventinfo.html/', {'error': error})
+        return eventinfo_post(request, eventkey)
     else:
         all_event_simple = get_all_events_simple()
         events2016 = all_event_simple[2016]
@@ -51,15 +43,22 @@ def eventinfo(request):
 
 @login_required(login_url="/account/login")
 def eventinfodetails(request, eventkey):
+    return eventinfo_post(request, eventkey)
+
+def eventinfo_post(request, eventkey):
     event = get_event(eventkey)
     teams = get_event_teams(eventkey)
+    matches = get_event_matches(eventkey)
     teams.sort(key=lambda x: x.team_number)
+    matches.sort(key=lambda x: int(x.time))
+
     if event:
         map_key = settings.GOOGLE_MAPS_KEY
-        return render(request, 'TheBlueAlliance/eventinfodetails.html/', {'event': event,'teams': teams, 'map_key':map_key})
+        return render(request, 'TheBlueAlliance/eventinfodetails.html/', {'event': event,'teams': teams, 'matches':matches, 'map_key':map_key})
     else:
         error = 'Error: The eventkey entered is invalid!'
         return render(request, 'TheBlueAlliance/eventinfo.html/', {'error': error})
+
 
 @staff_member_required
 def admin_controlpanel(request):
