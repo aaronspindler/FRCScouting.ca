@@ -45,6 +45,7 @@ def eventinfo(request):
 def eventinfodetails(request, eventkey):
     return eventinfo_post(request, eventkey)
 
+@login_required(login_url="/account/login")
 def eventinfo_post(request, eventkey):
     event = get_event(eventkey)
     teams = get_event_teams(eventkey)

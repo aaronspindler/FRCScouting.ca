@@ -19,6 +19,6 @@ def get_team(teamkey):
 def testRequest():
     url = 'https://frc-staging-api.firstinspires.org/v2.0/2017/teams'
     key = ''
-    headers = {'Authorization' : key}
+    headers = {'Basic' : key}
     response = requests.get(url, headers=headers)
     print(response)
