@@ -147,18 +147,20 @@ MEDIA_URL = '/media/'
 
 
 THE_BLUE_ALLIANCE_KEY = 'p8MD1dJfS2xOHD6cX7MIIW1mcFw1GWHuBKlUq9foxjt1Fp4f17B9PoYVreTBLC7a'
+FMS_API_USER = 'sampleuser'
+FMS_API_KEY = '7eaa6338-a097-4221-ac04-b6120fcc4d49'
 
 #Only thing it can do is lookup maps, so don't event try
 GOOGLE_MAPS_KEY = 'AIzaSyDwLAsY6lVwtiAwAHZQP7jGtoRtt0WyHEY'
 
 
-try:
-    from .local_settings import *
-except ImportError:
-    pass
-
 if 'test' in sys.argv:
     DATABASES['default'] = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'testingdb'
-}
+    }
+else:
+    try:
+        from .local_settings import *
+    except ImportError:
+        pass
