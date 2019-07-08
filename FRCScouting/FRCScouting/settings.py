@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'Powerup.apps.PowerupConfig',
     'DeepSpace.apps.DeepspaceConfig',
     'Rise.apps.RiseConfig',
+    'FIRSTEventsAPI.apps.FirsteventsapiConfig'
 ]
 
 MIDDLEWARE = [
