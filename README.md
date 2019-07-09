@@ -3,7 +3,7 @@
 ![](https://img.shields.io/github/license/xNovax/FRCScouting.ca.svg?colorB&logoColor=black)
 
 New and improved sequel to [FRC_Scouting_V2](https://github.com/xNovax/FRC_Scouting_V2) but this time as a web application
-
+### Updates ship to FRCScouting.ca every Monday
 ### This project is just getting started
 
 ## Getting started
