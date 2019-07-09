@@ -1,0 +1,32 @@
+{% extends "base_dashboard.html" %}
+{% load staticfiles %}
+
+{% block title %}
+Add Robot
+{% endblock %}
+
+{% block pageheader %}
+Add Robot
+{% endblock %}
+
+{% block content %}
+
+{% if message %}
+{{message}}
+<br>
+<br>
+{% endif %}
+<div class="row">
+  <div class="col-md-11">
+    <form action="{% url 'robot_add' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <table>
+      {{ form.as_table }}
+    </table>
+      <button class="primaryAction btn btn-primary" type="submit">Submit Robot</button>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}
