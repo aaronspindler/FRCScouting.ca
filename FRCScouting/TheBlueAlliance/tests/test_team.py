@@ -16,6 +16,7 @@ class TeamTestCase(TestCase):
         team2 = get_team(2)
         self.assertEqual(team2, None, "Should be None")
 
-        #TODO : Get a request to FRC Events API Working
-        #request = testRequest()
-        #self.assertEqual(request, None)
+    # Currently broken at API level
+    def test_get_team_events(self):
+        #team3710_events = get_team_events(3710)
+        #self.assertEqual(len(team3710_events), 5)
