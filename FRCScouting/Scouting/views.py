@@ -11,7 +11,6 @@ def dashboard(request):
 def robot_add(request):
     if request.method == 'POST':
         robot = Robot()
-        # TODO: Validate All Fields
         robot.team_number = request.POST['team_number']
         robot.year = request.POST['year']
         robot.name = request.POST['name']

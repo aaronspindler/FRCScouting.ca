@@ -21,9 +21,9 @@ Add Robot
     <form action="{% url 'robot_add' %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <label>Team Number</label>
-      <input class="textInput form-control" type="text" name="team_number" value="">
+      <input class="textInput form-control" type="number" name="team_number" value="">
       <label>Year</label>
-      <input class="textInput form-control" type="text" name="year" value="">
+      <input class="textInput form-control" type="number" name="year" value="">
       <label>Robot Name</label>
       <input class="textInput form-control" type="text" name="name" value="">
       <label>Image</label>
