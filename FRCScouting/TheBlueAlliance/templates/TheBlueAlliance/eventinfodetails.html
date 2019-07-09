@@ -17,118 +17,142 @@ Event Information | {{event.key}}
   <br>
   <br>
   {% endif %}
-  <div class="row">
-    <div class="col-md-6">
-      <div style="width: 100%"><iframe width="100%" height="300" src="https://www.google.com/maps/embed/v1/place?key={{map_key}}&q=place_id:{{event.gmaps_place_id}}" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>
-    </div>
-    <div class="col-md-6">
-      <h4>Info</h4>
-      <table style="width:100%">
-      <tr>
-        <td>Event Key: {{event.key}}</td>
-      </tr>
-      <tr>
-        <td><a href="{{event.gmaps_url}}"<address>{{event.address}}</address></a></td>
-      </tr>
-      <tr>
-        <td>Dates: {{event.start_date}} to {{event.end_date}}</td>
-      </tr>
-      {%if event.district.display_name %}
-        <tr>
-          <td>District: {{event.district.display_name}}</td>
-        </tr>
-      {%endif%}
-      <tr>
-        <td>Timezone: {{event.timezone}}</td>
-      </tr>
-      </table>
-      <hr>
-      {%if event.webcasts %}
-      <h4>Webcasts</h4>
-        {%for webcast in event.webcasts%}
-          {%if webcast.type == "youtube"%}
-            <a href="http://www.youtube.com/{{webcast.channel}}" class="btn btn-primary">Youtube</a>
-            {%elif webcast.type == "twitch"%}
-            <a href="http://www.twitch.tv/{{webcast.channel}}" class="btn btn-primary">Twitch</a>
-            {%elif webcast.type == "ustream"%}
-            <a href="http://www.ustream.tv/{{webcast.channel}}" class="btn btn-primary">UStream</a>
-            {%elif webcast.type == "iframe"%}
-            {%elif webcast.type == "html5"%}
-            {%elif webcast.type == "rtmp"%}
-            {%elif webcast.type == "lifestream"%}
-            {%elif webcast.type == "direct_link"%}
-            <a href="{{webcast.channel}}" class="btn btn-primary">Livestream</a>
-            {%endif%}
-            {%endfor%}
-      {%endif%}
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    {% if teams %}
-    <div class="col-md-6">
-      <h4>Teams</h4>
-      <table class="table table-striped table-hover table-sm" style="width:100%">
-        <tr>
-          <th>#</th>
-          <th>Nickname</th>
-          <th>Location</th>
-        </tr>
-      {%for team in teams%}
-      <tr>
-        <td>{{team.team_number}}</td>
-        <td><a href='{% url 'tba_teaminfodetail' team.team_number %}'>{{team.nickname}}</a></td>
-        <td>{{team.city}}, {{team.state_prov}}, {{team.country}}</td>
-      </tr>
-      {%endfor%}
-      </table>
-    </div>
-    {% endif %}
-    {% if matches %}
-    <div class="col-md-6">
-      <h4>Matches</h4>
-      <table class="table table-striped table-hover table-sm" style="width:100%">
-        <tr>
-          <th></th>
-          <th>Time</th>
-          <th class="bg-danger">Red 1</th>
-          <th class="bg-danger">Red 2</th>
-          <th class="bg-danger">Red 3</th>
-          <th class="bg-primary">Blue 1</th>
-          <th class="bg-primary">Blue 2</th>
-          <th class="bg-primary">Blue 3</th>
-        </tr>
-      {% for match in matches %}
-      <tr>
-        {% if match.comp_level == "qm"%}
-          <td>Q {{match.match_number}}</td>
-        {% elif match.comp_level == "qf"%}
-          <td>QF {{match.match_number}} Match {{match.set_number}}</td>
-        {% elif match.comp_level == "sf"%}
-          <td>SF {{match.match_number}} Match {{match.set_number}}</td>
-        {% elif match.comp_level == "f"%}
-          <td>F {{match.match_number}} Match {{match.set_number}}</td>
-        {% endif%}
-        <td>{{match.time|timestamp_to_time|date:"D g:i a" }}</td>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+      aria-selected="true">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+      aria-selected="false">Profile</a>
+  </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-        {% for team in match.alliances.red.team_keys%}
+    <div class="row">
+      <div class="col-md-6">
+        <div style="width: 100%"><iframe width="100%" height="300" src="https://www.google.com/maps/embed/v1/place?key={{map_key}}&q=place_id:{{event.gmaps_place_id}}" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>
+      </div>
+      <div class="col-md-6">
+        <h4>Info</h4>
+        <table style="width:100%">
+        <tr>
+          <td>Event Key: {{event.key}}</td>
+        </tr>
+        <tr>
+          <td><a href="{{event.gmaps_url}}"<address>{{event.address}}</address></a></td>
+        </tr>
+        <tr>
+          <td>Dates: {{event.start_date}} to {{event.end_date}}</td>
+        </tr>
+        {%if event.district.display_name %}
+          <tr>
+            <td>District: {{event.district.display_name}}</td>
+          </tr>
+        {%endif%}
+        <tr>
+          <td>Timezone: {{event.timezone}}</td>
+        </tr>
+        </table>
+        <hr>
+        {%if event.webcasts %}
+        <h4>Webcasts</h4>
+          {%for webcast in event.webcasts%}
+            {%if webcast.type == "youtube"%}
+              <a href="http://www.youtube.com/{{webcast.channel}}" class="btn btn-primary">Youtube</a>
+              {%elif webcast.type == "twitch"%}
+              <a href="http://www.twitch.tv/{{webcast.channel}}" class="btn btn-primary">Twitch</a>
+              {%elif webcast.type == "ustream"%}
+              <a href="http://www.ustream.tv/{{webcast.channel}}" class="btn btn-primary">UStream</a>
+              {%elif webcast.type == "iframe"%}
+              {%elif webcast.type == "html5"%}
+              {%elif webcast.type == "rtmp"%}
+              {%elif webcast.type == "lifestream"%}
+              {%elif webcast.type == "direct_link"%}
+              <a href="{{webcast.channel}}" class="btn btn-primary">Livestream</a>
+              {%endif%}
+              {%endfor%}
+        {%endif%}
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      {% if teams %}
+      <div class="col-md-6">
+        <h4>Teams</h4>
+        <table class="table table-striped table-hover table-sm" style="width:100%">
+          <tr>
+            <th>#</th>
+            <th>Nickname</th>
+            <th>Location</th>
+          </tr>
+        {%for team in teams%}
+        <tr>
+          <td>{{team.team_number}}</td>
+          <td><a href='{% url 'tba_teaminfodetail' team.team_number %}'>{{team.nickname}}</a></td>
+          <td>{{team.city}}, {{team.state_prov}}, {{team.country}}</td>
+        </tr>
+        {%endfor%}
+        </table>
+      </div>
+      {% endif %}
+      {% if matches %}
+      <div class="col-md-6">
+        <h4>Matches</h4>
+        <table class="table table-striped table-hover table-sm" style="width:100%">
+          <tr>
+            <th></th>
+            <th>Time</th>
+            <th class="bg-danger">Red 1</th>
+            <th class="bg-danger">Red 2</th>
+            <th class="bg-danger">Red 3</th>
+            <th class="bg-primary">Blue 1</th>
+            <th class="bg-primary">Blue 2</th>
+            <th class="bg-primary">Blue 3</th>
+          </tr>
+        {% for match in matches %}
+        <tr>
+          {% if match.comp_level == "qm"%}
+            <td>Q {{match.match_number}}</td>
+          {% elif match.comp_level == "qf"%}
+            <td>QF {{match.match_number}} Match {{match.set_number}}</td>
+          {% elif match.comp_level == "sf"%}
+            <td>SF {{match.match_number}} Match {{match.set_number}}</td>
+          {% elif match.comp_level == "f"%}
+            <td>F {{match.match_number}} Match {{match.set_number}}</td>
+          {% endif%}
+          <td>{{match.time|timestamp_to_time|date:"D g:i a" }}</td>
+
+          {% for team in match.alliances.red.team_keys%}
+            {% if team == user.team_number|teamnum_to_key %}
+              <td class="bg-warning">{{team}}</td>
+            {% else %}
+              <td>{{team}}</td>
+            {%endif%}
+          {% endfor %}
+          {% for team in match.alliances.blue.team_keys%}
           {% if team == user.team_number|teamnum_to_key %}
             <td class="bg-warning">{{team}}</td>
           {% else %}
             <td>{{team}}</td>
           {%endif%}
+          {% endfor %}
+        </tr>
         {% endfor %}
-        {% for team in match.alliances.blue.team_keys%}
-        {% if team == user.team_number|teamnum_to_key %}
-          <td class="bg-warning">{{team}}</td>
-        {% else %}
-          <td>{{team}}</td>
-        {%endif%}
-        {% endfor %}
-      </tr>
-      {% endfor %}
-      </table>
+        </table>
+      </div>
+      {% endif %}
     </div>
-    {% endif %}
   </div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Food truck fixie
+    locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit,
+    blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee.
+    Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum
+    PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS
+    salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit,
+    sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
+    stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</div>
+  </div>
+
 {% endblock %}
