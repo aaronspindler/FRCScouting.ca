@@ -50,8 +50,14 @@ def eventinfo_post(request, eventkey):
     event = get_event(eventkey)
     teams = get_event_teams(eventkey)
     matches = get_event_matches(eventkey)
-    teams.sort(key=lambda x: x.team_number)
-    matches.sort(key=lambda x: int(x.time))
+    try:
+        teams.sort(key=lambda x: x.team_number)
+    except Exception:
+        pass
+    try:
+        matches.sort(key=lambda x: int(x.time))
+    except Exception:
+        pass
 
     if event:
         map_key = settings.GOOGLE_MAPS_KEY

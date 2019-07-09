@@ -55,8 +55,9 @@ Event Information | {{event.key}}
           <td>Timezone: {{event.timezone}}</td>
         </tr>
         </table>
-        <hr>
+
         {%if event.webcasts %}
+        <hr>
         <h4>Webcasts</h4>
           {%for webcast in event.webcasts%}
             {%if webcast.type == "youtube"%}
@@ -122,7 +123,11 @@ Event Information | {{event.key}}
           {% elif match.comp_level == "f"%}
             <td>F {{match.match_number}} Match {{match.set_number}}</td>
           {% endif%}
+          {% if match.time%}
           <td>{{match.time|timestamp_to_time|date:"D g:i a" }}</td>
+          {% else %}
+          <td>No Time Available</td>
+          {% endif %}
 
           {% for team in match.alliances.red.team_keys%}
             {% if team == user.team_number|teamnum_to_key %}
