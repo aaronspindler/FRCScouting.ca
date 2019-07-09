@@ -12,23 +12,27 @@ Event Information | {{event.key}}
 {% endblock %}
 
 {% block content %}
-  {% if error %}
-  {{error}}
-  <br>
-  <br>
-  {% endif %}
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
+{% if error %}
+{{error}}
+<br>
+<br>
+{% endif %}
+<ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-      aria-selected="true">Home</a>
+    <a class="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="summary"
+    aria-selected="true">Summary</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-      aria-selected="false">Profile</a>
+    <a class="nav-link" id="matches-tab" data-toggle="tab" href="#matches" role="tab" aria-controls="matches"
+    aria-selected="false">Matches</a>
   </li>
-  </ul>
-  <div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+  <li class="nav-item">
+    <a class="nav-link" id="statistics-tab" data-toggle="tab" href="#statistics" role="tab" aria-controls="statistics"
+    aria-selected="false">Statistics</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
 
     <div class="row">
       <div class="col-md-6">
@@ -37,43 +41,43 @@ Event Information | {{event.key}}
       <div class="col-md-6">
         <h4>Info</h4>
         <table style="width:100%">
-        <tr>
-          <td>Event Key: {{event.key}}</td>
-        </tr>
-        <tr>
-          <td><a href="{{event.gmaps_url}}"<address>{{event.address}}</address></a></td>
-        </tr>
-        <tr>
-          <td>Dates: {{event.start_date}} to {{event.end_date}}</td>
-        </tr>
-        {%if event.district.display_name %}
+          <tr>
+            <td>Event Key: {{event.key}}</td>
+          </tr>
+          <tr>
+            <td><a href="{{event.gmaps_url}}"<address>{{event.address}}</address></a></td>
+          </tr>
+          <tr>
+            <td>Dates: {{event.start_date}} to {{event.end_date}}</td>
+          </tr>
+          {%if event.district.display_name %}
           <tr>
             <td>District: {{event.district.display_name}}</td>
           </tr>
-        {%endif%}
-        <tr>
-          <td>Timezone: {{event.timezone}}</td>
-        </tr>
+          {%endif%}
+          <tr>
+            <td>Timezone: {{event.timezone}}</td>
+          </tr>
         </table>
 
         {%if event.webcasts %}
         <hr>
         <h4>Webcasts</h4>
-          {%for webcast in event.webcasts%}
-            {%if webcast.type == "youtube"%}
-              <a href="http://www.youtube.com/{{webcast.channel}}" class="btn btn-primary">Youtube</a>
-              {%elif webcast.type == "twitch"%}
-              <a href="http://www.twitch.tv/{{webcast.channel}}" class="btn btn-primary">Twitch</a>
-              {%elif webcast.type == "ustream"%}
-              <a href="http://www.ustream.tv/{{webcast.channel}}" class="btn btn-primary">UStream</a>
-              {%elif webcast.type == "iframe"%}
-              {%elif webcast.type == "html5"%}
-              {%elif webcast.type == "rtmp"%}
-              {%elif webcast.type == "lifestream"%}
-              {%elif webcast.type == "direct_link"%}
-              <a href="{{webcast.channel}}" class="btn btn-primary">Livestream</a>
-              {%endif%}
-              {%endfor%}
+        {%for webcast in event.webcasts%}
+        {%if webcast.type == "youtube"%}
+        <a href="http://www.youtube.com/{{webcast.channel}}" class="btn btn-primary">Youtube</a>
+        {%elif webcast.type == "twitch"%}
+        <a href="http://www.twitch.tv/{{webcast.channel}}" class="btn btn-primary">Twitch</a>
+        {%elif webcast.type == "ustream"%}
+        <a href="http://www.ustream.tv/{{webcast.channel}}" class="btn btn-primary">UStream</a>
+        {%elif webcast.type == "iframe"%}
+        {%elif webcast.type == "html5"%}
+        {%elif webcast.type == "rtmp"%}
+        {%elif webcast.type == "lifestream"%}
+        {%elif webcast.type == "direct_link"%}
+        <a href="{{webcast.channel}}" class="btn btn-primary">Livestream</a>
+        {%endif%}
+        {%endfor%}
         {%endif%}
       </div>
     </div>
@@ -88,13 +92,13 @@ Event Information | {{event.key}}
             <th>Nickname</th>
             <th>Location</th>
           </tr>
-        {%for team in teams%}
-        <tr>
-          <td>{{team.team_number}}</td>
-          <td><a href='{% url 'tba_teaminfodetail' team.team_number %}'>{{team.nickname}}</a></td>
-          <td>{{team.city}}, {{team.state_prov}}, {{team.country}}</td>
-        </tr>
-        {%endfor%}
+          {%for team in teams%}
+          <tr>
+            <td>{{team.team_number}}</td>
+            <td><a href='{% url 'tba_teaminfodetail' team.team_number %}'>{{team.nickname}}</a></td>
+            <td>{{team.city}}, {{team.state_prov}}, {{team.country}}</td>
+          </tr>
+          {%endfor%}
         </table>
       </div>
       {% endif %}
@@ -112,52 +116,50 @@ Event Information | {{event.key}}
             <th class="bg-primary">Blue 2</th>
             <th class="bg-primary">Blue 3</th>
           </tr>
-        {% for match in matches %}
-        <tr>
-          {% if match.comp_level == "qm"%}
+          {% for match in matches %}
+          <tr>
+            {% if match.comp_level == "qm"%}
             <td>Q {{match.match_number}}</td>
-          {% elif match.comp_level == "qf"%}
+            {% elif match.comp_level == "qf"%}
             <td>QF {{match.match_number}} Match {{match.set_number}}</td>
-          {% elif match.comp_level == "sf"%}
+            {% elif match.comp_level == "sf"%}
             <td>SF {{match.match_number}} Match {{match.set_number}}</td>
-          {% elif match.comp_level == "f"%}
+            {% elif match.comp_level == "f"%}
             <td>F {{match.match_number}} Match {{match.set_number}}</td>
-          {% endif%}
-          {% if match.time%}
-          <td>{{match.time|timestamp_to_time|date:"D g:i a" }}</td>
-          {% else %}
-          <td>No Time Available</td>
-          {% endif %}
-
-          {% for team in match.alliances.red.team_keys%}
-            {% if team == user.team_number|teamnum_to_key %}
-              <td class="bg-warning">{{team}}</td>
+            {% endif%}
+            {% if match.time%}
+            <td>{{match.time|timestamp_to_time|date:"D g:i a" }}</td>
             {% else %}
-              <td>{{team}}</td>
-            {%endif%}
-          {% endfor %}
-          {% for team in match.alliances.blue.team_keys%}
-          {% if team == user.team_number|teamnum_to_key %}
+            <td>No Time Available</td>
+            {% endif %}
+
+            {% for team in match.alliances.red.team_keys%}
+            {% if team == user.team_number|teamnum_to_key %}
             <td class="bg-warning">{{team}}</td>
-          {% else %}
+            {% else %}
             <td>{{team}}</td>
-          {%endif%}
+            {%endif%}
+            {% endfor %}
+            {% for team in match.alliances.blue.team_keys%}
+            {% if team == user.team_number|teamnum_to_key %}
+            <td class="bg-warning">{{team}}</td>
+            {% else %}
+            <td>{{team}}</td>
+            {%endif%}
+            {% endfor %}
+          </tr>
           {% endfor %}
-        </tr>
-        {% endfor %}
         </table>
       </div>
       {% endif %}
     </div>
   </div>
-  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">Food truck fixie
-    locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit,
-    blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee.
-    Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum
-    PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS
-    salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit,
-    sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
-    stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</div>
+  <div class="tab-pane fade" id="matches" role="tabpanel" aria-labelledby="matches-tab">
+    Matches
   </div>
+  <div class="tab-pane fade" id="statistics" role="tabpanel" aria-labelledby="statistics-tab">
+    Stats
+  </div>
+</div>
 
 {% endblock %}
