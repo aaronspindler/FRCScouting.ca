@@ -2,9 +2,23 @@
 [![Build Status](https://travis-ci.com/xNovax/FRCScouting.ca.svg?branch=master)](https://travis-ci.com/xNovax/FRCScouting.ca)
 ![](https://img.shields.io/github/license/xNovax/FRCScouting.ca.svg?colorB&logoColor=black)
 
+Visit our production site at [FRCScouting.ca](FRCScouting.ca)
+
 New and improved sequel to [FRC_Scouting_V2](https://github.com/xNovax/FRC_Scouting_V2) but this time as a web application
-### Updates ship to FRCScouting.ca every Monday
-### This project is just getting started
+
+## Features
+- Match Scouting
+- Match Analysis
+- Pit Scouting
+- Robot Image Sharing
+- TheBlueAlliance.ca Insights
+- TheBlueAlliance Data Access
+- First Events API Data Access
+- Event Information
+- Team Information
+- Team Analysis
+- Event OPR
+- Event Analysis
 
 ## Getting started
 ```
@@ -12,6 +26,7 @@ New and improved sequel to [FRC_Scouting_V2](https://github.com/xNovax/FRC_Scout
   python FRCScouting/manage.py migrate
   python FRCScouting/manage.py runserver
 ```
+or view example_script.sh
 ## Contributing
 If you would like to contribute to the project, please make a pull request and I will review it. If your request isn't approved/denied within 72 hours please email me at Aaron@xNovax.net
 ## Bug Reports
