@@ -10,38 +10,39 @@ def dashboard(request):
 @login_required(login_url="/account/login")
 def robot_add(request):
     if request.method == 'POST':
-        robot = Robot()
-        robot.team_number = request.POST['team_number']
-        robot.year = request.POST['year']
-        robot.name = request.POST['name']
-        robot.pub_date = datetime.datetime.now()
-        robot.submitted_by = request.user
-        try:
-            robot.image = request.FILES['image']
-        except Exception:
-            pass
+        if request.POST['team_number'] and request.POST['year'] and request.POST['name']:
+            robot = Robot()
+            robot.team_number = request.POST['team_number']
+            robot.year = request.POST['year']
+            robot.name = request.POST['name']
+            robot.pub_date = datetime.datetime.now()
+            robot.submitted_by = request.user
+            try:
+                robot.image = request.FILES['image']
+            except Exception:
+                pass
 
-        try:
-            robot.image2 = request.FILES['image2']
-        except Exception:
-            pass
+            try:
+                robot.image2 = request.FILES['image2']
+            except Exception:
+                pass
 
-        try:
-            robot.image3 = request.FILES['image3']
-        except Exception:
-            pass
+            try:
+                robot.image3 = request.FILES['image3']
+            except Exception:
+                pass
 
-        try:
-            robot.image4 = request.FILES['image4']
-        except Exception:
-            pass
+            try:
+                robot.image4 = request.FILES['image4']
+            except Exception:
+                pass
 
-        try:
-            robot.image5 = request.FILES['image5']
-        except Exception:
-            pass
+            try:
+                robot.image5 = request.FILES['image5']
+            except Exception:
+                pass
 
-        robot.save()
-        return render(request, 'Scouting/Dashboard.html')
-    else:
-        return render(request, 'Scouting/add_robot.html')
+            robot.save()
+            message = 'Your images have been successfully submitted, once they are approved they will show up!'
+            return render(request, 'ContentPages/robots.html', {'message':message})
+    return render(request, 'Scouting/add_robot.html')

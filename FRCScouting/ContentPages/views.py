@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-import operator
 from .models import GameManual
+from Scouting.models import Robot
+import operator
 
 def home(request):
     return render(request, 'ContentPages/home.html')
@@ -25,7 +26,7 @@ def licenses(request):
     return render(request, 'ContentPages/licenses.html')
 
 def gamemanuals(request):
-    gameManuals = GameManual.objects
+    gameManuals = GameManual.objects.all()
     return render(request, 'ContentPages/gamemanuals.html',{'gamemanuals':gameManuals})
 
 def pitscouting(request):
@@ -39,3 +40,11 @@ def whyads(request):
 
 def terms(request):
     return render(request, 'ContentPages/terms.html')
+
+def robots(request):
+    approved_robots = []
+    all_robots = Robot.objects.all()
+    for robot in all_robots:
+        if robot.is_approved:
+            approved_robots.append(robot)
+    return render(request, 'ContentPages/robots.html', {'robots':approved_robots})
