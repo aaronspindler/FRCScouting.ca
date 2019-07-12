@@ -16,6 +16,14 @@ def dashboard(request):
     return render(request, 'Scouting/Dashboard.html', {'team_events':team_events, 'map_key':map_key})
 
 @login_required(login_url="/account/login")
+def match_scouting(request):
+    return render(request, 'Scouting/match_scouting.html')
+
+@login_required(login_url="/account/login")
+def pit_scouting(request):
+    return render(request, 'Scouting/pit_scouting.html')
+
+@login_required(login_url="/account/login")
 def robot_add(request):
     if request.method == 'POST':
         if request.POST['team_number'] and request.POST['year'] and request.POST['name']:
@@ -29,22 +37,18 @@ def robot_add(request):
                 robot.image = request.FILES['image']
             except Exception:
                 pass
-
             try:
                 robot.image2 = request.FILES['image2']
             except Exception:
                 pass
-
             try:
                 robot.image3 = request.FILES['image3']
             except Exception:
                 pass
-
             try:
                 robot.image4 = request.FILES['image4']
             except Exception:
                 pass
-
             try:
                 robot.image5 = request.FILES['image5']
             except Exception:
