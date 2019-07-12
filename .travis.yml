@@ -4,6 +4,7 @@ python:
   - "3.7"
 
 install:
+  - pip install git+https://github.com/TBA-API/tba-api-client-python.git
   - pip install -r requirements.txt
 
 script:
