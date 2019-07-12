@@ -6,6 +6,7 @@ from TheBlueAlliance.event import *
 class EventTestCase(TestCase):
     def test_get_event(self):
         #Should be successful
+        print("Testing TBA get_event")
         event2018crc = get_event('2018crc')
         self.assertEqual(event2018crc.name,'China Robotics Challenge', "Should be China Robotics Challenge")
 
@@ -49,6 +50,7 @@ class EventTestCase(TestCase):
         self.assertEqual(event2000abcd, None, 'Should be None')
 
     def test_get_events_by_year(self):
+        print("Testing TBA get_event_by_year")
         events2018 = get_events_by_year(2018)
         self.assertEqual(len(events2018),278, 'Should be 278')
 
@@ -57,6 +59,7 @@ class EventTestCase(TestCase):
 
     def test_get_events_by_year_simple(self):
         #Should succeed
+        print("Testing TBA get_event_by_year_simple")
         events2018 = get_events_by_year_simple(2018)
         self.assertEqual(len(events2018),278, 'Should be 278')
 
@@ -66,6 +69,7 @@ class EventTestCase(TestCase):
 
     def test_get_events_by_year_keys(self):
         #Should succeed
+        print("Testing TBA get_event_by_year_keys")
         events2018keys = get_events_by_year_keys(2018)
         self.assertEqual(len(events2018keys), 278, 'Should be 278')
 
@@ -80,6 +84,7 @@ class EventTestCase(TestCase):
         self.assertEqual(events1950keys, None, 'Should be None')
 
     def test_get_all_event_keys(self):
+        print("Testing TBA get_all_event_keys")
         allkeys = get_all_event_keys()
         self.assertEqual(len(allkeys), 4)
         self.assertEqual(len(allkeys[2016]), 203)
@@ -87,6 +92,7 @@ class EventTestCase(TestCase):
         self.assertEqual(len(allkeys[2018]), 278)
 
     def test_get_all_events_simple(self):
+        print("Testing TBA get_all_events_simple")
         allEvents = get_all_events_simple()
         self.assertEqual(len(allEvents), 4)
         self.assertEqual(len(allEvents[2016]), 203)
@@ -94,9 +100,11 @@ class EventTestCase(TestCase):
         self.assertEqual(len(allEvents[2018]), 278)
 
     def test_get_event_teams(self):
+        print("Testing TBA get_event_teams")
         iri2016_teams = get_event_teams("2016iri")
         self.assertEqual(len(iri2016_teams),69)
 
     def test_get_event_matches(self):
+        print("Testing TBA get_event_matches")
         iri2018_matches = get_event_matches('2018iri')
         self.assertEqual(len(iri2018_matches), 122)

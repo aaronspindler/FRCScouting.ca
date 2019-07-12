@@ -5,6 +5,7 @@ from TheBlueAlliance.team import *
 
 class TeamTestCase(TestCase):
     def test_get_team(self):
+        print("Testing TBA get_team")
         #Should be successful
         team3710 = get_team(3710)
         self.assertEqual(team3710.team_number, 3710, "Should be 3710")
@@ -17,5 +18,6 @@ class TeamTestCase(TestCase):
         self.assertEqual(team2, None, "Should be None")
 
     def test_get_team_events(self):
+        print("Testing TBA get_team_events")
         team3710_events = get_team_events(3710)
         self.assertEqual(len(team3710_events), 10)

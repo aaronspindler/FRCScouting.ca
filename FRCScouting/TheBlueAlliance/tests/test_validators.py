@@ -5,6 +5,7 @@ from TheBlueAlliance.validators import *
 
 class ValidatorsTestCase(TestCase):
     def test_validate_teamkey(self):
+        print("Testing TBA validators")
         self.assertEqual(validate_teamkey(123), True, "Should be True")
         self.assertEqual(validate_teamkey(1), True, "Should be True")
         self.assertEqual(validate_teamkey(12), True, "Should be True")
