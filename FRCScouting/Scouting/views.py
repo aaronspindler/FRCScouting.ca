@@ -12,6 +12,7 @@ def dashboard(request):
     if request.user.team_number:
         team_events = get_team_events(request.user.team_number)
         team_events.sort(key=lambda x: x.year, reverse=True)
+        team_events = team_events[:9]
     return render(request, 'Scouting/Dashboard.html', {'team_events':team_events, 'map_key':map_key})
 
 @login_required(login_url="/account/login")

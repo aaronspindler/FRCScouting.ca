@@ -44,7 +44,7 @@ def settings(request):
         if request.POST['team_number']:
             user.team_number = request.POST['team_number']
         user.save()
-        return render(request, 'Scouting/Dashboard.html', {'message':'Successfully saved settings'})
+        return redirect('dashboard')
     else:
         return render(request, 'Accounts/settings.html', {'countries':countries})
 
