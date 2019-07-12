@@ -48,8 +48,8 @@ class EventTestCase(TestCase):
         #Currently does not work because of a bug in API
         #See: https://github.com/the-blue-alliance/the-blue-alliance/pull/2543
 
-        #events2019 = get_events_by_year(2019)
-        #self.assertEqual(len(events2019),244, 'Should be 244')
+        events2019 = get_events_by_year(2019)
+        self.assertEqual(len(events2019),244, 'Should be 244')
 
         events1950 = get_events_by_year(1950)
         self.assertEqual(events1950, None, 'Should be None')
