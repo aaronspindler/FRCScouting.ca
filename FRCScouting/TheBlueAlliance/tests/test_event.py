@@ -6,6 +6,9 @@ from TheBlueAlliance.event import *
 class EventTestCase(TestCase):
     def test_get_event(self):
         #Should be successful
+        event2018crc = get_event('2018crc')
+        self.assertEqual(event2018crc.name,'China Robotics Challenge', "Should be China Robotics Challenge")
+
         event2019abca = get_event('2019abca')
         self.assertEqual(event2019abca.address, "7555 Falconridge Blvd NE #10, Calgary, AB T3J 0C9, Canada")
         self.assertEqual(event2019abca.city, "Calgary")
@@ -33,9 +36,10 @@ class EventTestCase(TestCase):
         self.assertEqual(event2019abca.start_date, date(2019,4,3))
         self.assertEqual(event2019abca.state_prov, "AB")
         self.assertEqual(event2019abca.timezone, "America/Edmonton")
-
-        #TODO webcasts
-
+        self.assertEqual(event2019abca.webcasts[0].channel, "firstinspires11")
+        self.assertEqual(event2019abca.webcasts[0].type, "twitch")
+        self.assertEqual(event2019abca.webcasts[1].channel, "firstinspires12")
+        self.assertEqual(event2019abca.webcasts[1].type, "twitch")
         self.assertEqual(event2019abca.website, "http://frcwest.com/")
         self.assertEqual(event2019abca.week, 5)
         self.assertEqual(event2019abca.year, 2019)
@@ -45,11 +49,8 @@ class EventTestCase(TestCase):
         self.assertEqual(event2000abcd, None, 'Should be None')
 
     def test_get_events_by_year(self):
-        #Currently does not work because of a bug in API
-        #See: https://github.com/the-blue-alliance/the-blue-alliance/pull/2543
-
-        events2019 = get_events_by_year(2019)
-        self.assertEqual(len(events2019),244, 'Should be 244')
+        events2018 = get_events_by_year(2018)
+        self.assertEqual(len(events2018),278, 'Should be 278')
 
         events1950 = get_events_by_year(1950)
         self.assertEqual(events1950, None, 'Should be None')
