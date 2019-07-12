@@ -10,7 +10,7 @@
 <br>
 {% endif %}
 <div class="row">
-  <div class="col-md-6 offset-md-3">
+  <div class="col-md-10 offset-md-1">
   <br>
   <h2>Sign up!</h2>
   <p>Already have an account? Then
@@ -40,6 +40,21 @@
     Last name:
     <br>
     <input class="textinput textInput form-control" type="text" name="lastname" value=""/>
+    <br>
+
+    Country:
+    <br>
+    <select name="country" class="custom-select mr-md-4">
+      {% for country in countries %}
+        <option value="{{ country.code }}">{{ country.name }}</option>
+      {% endfor %}
+    </select>
+    <br>
+    <br>
+
+    Team Number:
+    <br>
+    <input class="textinput textInput form-control" maxlength="7" type="number" name="team_number" value="">
     <br>
 
     Email Address:

@@ -13,15 +13,15 @@ def signup(request):
                 user = User.objects.get(username = request.POST['username'])
                 return render(request, 'Accounts/signup.html', {'error':'Username has already been taken!'})
             except User.DoesNotExist:
-                user = User.objects.create_user(request.POST['username'], password=request.POST['password1'], first_name=request.POST['firstname'], last_name=request.POST['lastname'], email=request.POST['email'])
+                user = User.objects.create_user(request.POST['username'], password=request.POST['password1'], first_name=request.POST['firstname'], last_name=request.POST['lastname'],country=request.POST['country'], team_number=request.POST['team_number'], email=request.POST['email'])
                 auth.login(request,user)
                 return redirect('home')
         else:
-            return render(request, 'Accounts/signup.html', {'error':'Passwords must match!'})
+            return render(request, 'Accounts/signup.html', {'countries':countries, 'error':'Passwords must match!'})
 
                 #User wants to enter info
     else:
-        return render(request, 'Accounts/signup.html')
+        return render(request, 'Accounts/signup.html', {'countries':countries})
 
 def login(request):
     if request.method == 'POST':
