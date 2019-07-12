@@ -41,7 +41,8 @@ def settings(request):
         user.last_name = request.POST['last_name']
         user.email = request.POST['email']
         user.country = request.POST['country']
-        user.team_number = request.POST['team_number']
+        if request.POST['team_number']:
+            user.team_number = request.POST['team_number']
         user.save()
         return render(request, 'Scouting/Dashboard.html', {'message':'Successfully saved settings'})
     else:

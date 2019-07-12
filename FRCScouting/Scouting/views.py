@@ -1,11 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 from .models import Robot
+from TheBlueAlliance.team import get_team_events
 import datetime
 
 @login_required(login_url="/account/login")
 def dashboard(request):
-    return render(request, 'Scouting/Dashboard.html')
+    map_key = settings.GOOGLE_MAPS_KEY
+    team_events = None
+    if request.user.team_number:
+        team_events = get_team_events(request.user.team_number)
+        team_events.sort(key=lambda x: x.year, reverse=True)
+    return render(request, 'Scouting/Dashboard.html', {'team_events':team_events, 'map_key':map_key})
 
 @login_required(login_url="/account/login")
 def robot_add(request):
