@@ -13,8 +13,6 @@ def get_event(eventkey):
     except ApiException as e:
         return None
 
-# Currently is buggy because of backend API bug
-# See: https://github.com/the-blue-alliance/the-blue-alliance/pull/2543
 def get_events_by_year(year):
     configuration = tbaapiv3client.Configuration()
     configuration.api_key['X-TBA-Auth-Key'] = settings.THE_BLUE_ALLIANCE_KEY

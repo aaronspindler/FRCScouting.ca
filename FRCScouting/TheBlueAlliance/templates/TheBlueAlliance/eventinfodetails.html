@@ -28,10 +28,12 @@ Event Information | {{event.key}}
     aria-selected="false">Matches</a>
   </li>
   {% endif %}
+  {% if statistics %}
   <li class="nav-item">
     <a class="nav-link" id="statistics-tab" data-toggle="tab" href="#statistics" role="tab" aria-controls="statistics"
     aria-selected="false">Statistics</a>
   </li>
+  {% endif %}
 </ul>
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">

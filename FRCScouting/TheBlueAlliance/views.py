@@ -5,6 +5,7 @@ from django.conf import settings
 from . import validators
 from .team import *
 from .event import *
+from .match import *
 
 @login_required(login_url="/account/login")
 def teaminfo(request):
@@ -66,6 +67,12 @@ def eventinfo_post(request, eventkey):
         error = 'Error: The eventkey entered is invalid!'
         return render(request, 'TheBlueAlliance/eventinfo.html/', {'error': error})
 
+
+#TODO : Setup Match Details
+@login_required(login_url="/account/login")
+def matchinfodetails(request, matchkey):
+    match = get_match(matchkey)
+    return render(request, 'TheBlueAlliance/matchinfodetails.html/', {'match':match})
 
 @staff_member_required
 def admin_controlpanel(request):
