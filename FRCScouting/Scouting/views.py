@@ -58,3 +58,12 @@ def robot_add(request):
             message = 'Your images have been successfully submitted, once they are approved they will show up!'
             return render(request, 'ContentPages/robots.html', {'message':message})
     return render(request, 'Scouting/add_robot.html')
+
+@login_required(login_url="/account/login")
+def robots(request):
+        approved_robots = []
+        all_robots = Robot.objects.all()
+        for robot in all_robots:
+            if robot.is_approved:
+                approved_robots.append(robot)
+        return render(request, 'Scouting/robots.html', {'robots':approved_robots})

@@ -1,0 +1,32 @@
+{% extends "base_dashboard.html" %}
+{% load staticfiles %}
+
+{% block title %}
+Robots
+{% endblock %}
+
+{% block pageheader %}
+Robots
+{% endblock %}
+
+{% block content %}
+
+<div class="album py-5">
+  <div class="container">
+    <div class="row">
+      {% for robot in robots%}
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <img class="card-img-top" src="{{robot.mainimage.url}}"/>
+          <div class="card-body">
+            <h5 class="card-title">{{robot.team_number}}</h5>
+            <p class="card-text">Year: {{robot.year}}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
