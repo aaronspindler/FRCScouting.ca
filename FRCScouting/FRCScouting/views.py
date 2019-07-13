@@ -1,3 +1,6 @@
-from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-import operator
+from django.contrib.admin.views.decorators import staff_member_required
+
+@staff_member_required
+def test(request):
+    return render(request, 'test.html')

@@ -51,18 +51,38 @@ gtag('config', 'UA-100881995-4');
 </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+  <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
     <a class="navbar-brand" href="{% url 'dashboard'%}"><img src= "{% static "ContentPages/logo_transparent.png"%}" height = 50 width = 245/></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="{% url 'public_robots'%}">Robots</a>
-        <a class="nav-item nav-link" href="{% url 'gamemanuals'%}">Game Manuals</a>
-        <a class="nav-item nav-link" href="{% url 'blog'%}">Blog</a>
-      </div>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'scouting_robots'%}">Robots</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'gamemanuals'%}">Game Manuals</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'blog'%}">Blog</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown03">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-md-0">
+        <input class="form-control" type="text" placeholder="Search">
+      </form>
     </div>
+
     {% if user.is_authenticated %}
     <a class="nav-item nav-link" href="{% url 'settings'%}">Settings <span class="oi oi-cog"></span></a>
     <a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout <span class="oi oi-account-logout"></span></a>
