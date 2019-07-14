@@ -18,3 +18,7 @@ class Team(models.Model):
     state_prov = models.TextField(null=True)
     team_number = models.IntegerField(primary_key=True)
     website = models.URLField(null=True)
+
+    #many to many
+    #matches =
+    #events =
